@@ -13,6 +13,10 @@ public interface UsuarioRepository extends CrudRepository <Usuarios, Integer> {
 @Query("SELECT u FROM Usuarios u WHERE u.Identificacion= ?1")
     List <Usuarios> findByIdentificacion(String Identificacion);
 
-Usuarios saveAndFlush(Usuarios usuarios);
-    
+
+   
+    Usuarios saveAndFlush(Usuarios usuarios);
 }
+
+    
+

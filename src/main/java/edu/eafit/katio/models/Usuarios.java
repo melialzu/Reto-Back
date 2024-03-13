@@ -1,7 +1,6 @@
 package edu.eafit.katio.models;
 
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ public class Usuarios{
     
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
     @Column(nullable = false)
@@ -26,6 +25,7 @@ public class Usuarios{
     //Luchomon@pokemon.com || blake3(MeGustaPOkemon);
     
     
+    
     public Integer getId() {
         return Id;
     }
@@ -36,8 +36,10 @@ public class Usuarios{
         return Nombre;
     }
     public void setNombre(String nombre) {
+        
         Nombre = nombre;
     }
+   
 
 
     public String getPassword() {
