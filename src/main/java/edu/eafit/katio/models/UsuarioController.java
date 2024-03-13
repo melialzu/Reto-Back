@@ -1,5 +1,6 @@
 package edu.eafit.katio.models;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,14 +26,39 @@ public class UsuarioController {
          return usuarioRepository.findAll();
     }
 
-    @GetMapping("/id")
-    public @ResponseBody Optional <Usuarios> getById(@RequestParam ("Id") Integer Id)
+   /*  @GetMapping("/id")
+    public @ResponseBody Optional <Usuarios> getById(@RequestParam ("Id") Integer Id) 
+    
     {
-        return usuarioRepository.findById(Id);   
+       
+       return usuarioRepository.findById(Id);   
+       
+    }*/
 
+
+    @GetMapping("/id")
+    public ResponseEntity<Usuarios> getById(@RequestParam("Id") Integer id) {
+        Optional<Usuarios> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuarios usuario = usuarioOptional.get();
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-     @GetMapping("/nombre")
+    @GetMapping("/nombre")
+    public ResponseEntity<Iterable<Usuarios>> getByNombre(@RequestParam("Nombre") String nombre) {
+        Iterable<Usuarios> usuarios = usuarioRepository.findByNombre(nombre);
+        if (usuarios.iterator().hasNext()) {
+            return new ResponseEntity<>(usuarios, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+     /*@GetMapping("/nombre")
     public @ResponseBody Iterable <Usuarios> getByNombre(@RequestParam ("Nombre")String Nombre)
     {
         return usuarioRepository.findByNombre(Nombre);
@@ -42,7 +68,19 @@ public class UsuarioController {
     public @ResponseBody Iterable <Usuarios> getByIdentificacion(@RequestParam ("Identificacion") String Identificacion)
     {
         return usuarioRepository.findByIdentificacion(Identificacion);
+    }*/
+
+    @GetMapping("/identificacion")
+    public ResponseEntity<Iterable<Usuarios>> getByIdentificacion(@RequestParam("Identificacion") String identificacion) {
+        Iterable<Usuarios> usuarios = usuarioRepository.findByIdentificacion(identificacion);
+        if (usuarios.iterator().hasNext()) {
+            return new ResponseEntity<>(usuarios, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
+
 
     @PostMapping ("/nuevoUsuario")
     public ResponseEntity<Usuarios> createNuevoUsuario(@RequestBody Usuarios usuario)
