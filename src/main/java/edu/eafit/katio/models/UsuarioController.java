@@ -43,7 +43,7 @@ public class UsuarioController {
             Usuarios usuario = usuarioOptional.get();
             return new ResponseEntity<>(usuario, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -53,7 +53,7 @@ public class UsuarioController {
         if (usuarios.iterator().hasNext()) {
             return new ResponseEntity<>(usuarios, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -76,7 +76,7 @@ public class UsuarioController {
         if (usuarios.iterator().hasNext()) {
             return new ResponseEntity<>(usuarios, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
