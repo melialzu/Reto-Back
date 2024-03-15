@@ -1,6 +1,5 @@
-package edu.eafit.katio.models;
+package edu.eafit.katio.Controller;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import edu.eafit.katio.Repository.UsuarioRepository;
+import edu.eafit.katio.models.Usuarios;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -26,14 +28,7 @@ public class UsuarioController {
          return usuarioRepository.findAll();
     }
 
-   /*  @GetMapping("/id")
-    public @ResponseBody Optional <Usuarios> getById(@RequestParam ("Id") Integer Id) 
-    
-    {
-       
-       return usuarioRepository.findById(Id);   
-       
-    }*/
+  
 
 
     @GetMapping("/id")
@@ -57,18 +52,6 @@ public class UsuarioController {
         }
     }
 
-
-     /*@GetMapping("/nombre")
-    public @ResponseBody Iterable <Usuarios> getByNombre(@RequestParam ("Nombre")String Nombre)
-    {
-        return usuarioRepository.findByNombre(Nombre);
-    }
-
-    @GetMapping("/identificacion")
-    public @ResponseBody Iterable <Usuarios> getByIdentificacion(@RequestParam ("Identificacion") String Identificacion)
-    {
-        return usuarioRepository.findByIdentificacion(Identificacion);
-    }*/
 
     @GetMapping("/identificacion")
     public ResponseEntity<Iterable<Usuarios>> getByIdentificacion(@RequestParam("Identificacion") String identificacion) {
