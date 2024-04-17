@@ -59,6 +59,13 @@ public class UsuarioController {
         return new ResponseEntity<Iterable<Usuarios>>(usurioByIdentificacion, HttpStatus.OK);
     }
 
+
+    @GetMapping("/loguin")
+    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody("Email")String email, @RequestBody("Password") String password){
+        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByLoguin(email,password);
+        return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,getUsuarioByPassword, HttpStatus.OK);
+    } 
+
  
 
    
