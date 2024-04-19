@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,26 +56,25 @@ public class UsuarioController {
    @GetMapping("/identificacion")
     public ResponseEntity<Iterable<Usuarios>> getByIdentificacion (@RequestParam("Identificacion")String identificacion){
         var usurioByIdentificacion = new UsuarioService(usuarioRepository).getUsuarioByIdentificacion(identificacion);
-
         return new ResponseEntity<Iterable<Usuarios>>(usurioByIdentificacion, HttpStatus.OK);
     }
 
 
     @GetMapping("/loguin")
-    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody("Email")String email, @RequestBody("Password") String password){
-        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByLoguin(email,password);
-        return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,getUsuarioByPassword, HttpStatus.OK);
+    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody String email,String password){
+        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByEmailAndPassword(email,password);
+        return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,HttpStatus.OK);
     } 
 
  
+/* 
+ @GetMapping("/loguin")
+    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody String email){
+        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByEmail(email);
+        return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,HttpStatus.OK);
+    } 
 
-   
-
-
-
-
-
-
+  */ 
     
     @PutMapping("/add") 
     public ResponseEntity<Usuarios> addUsurios(@RequestBody Usuarios usuarios){

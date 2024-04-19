@@ -10,9 +10,8 @@ public interface BaseUsuarioService {
     Optional<Usuarios> getUsuarioById(Integer id);
     Iterable<Usuarios>getUsuarioByNombre(String nombre);
     Iterable<Usuarios>getUsuarioByIdentificacion(String identificacion);
-    Iterable<Usuarios>getbyLoguin(String email, String password);
-
-  
+    Iterable<Usuarios>getUsuarioByEmailAndPassword(String email, String password);
+    Iterable<Usuarios>getUsuarioByEmail(String email);
     
    
 }

@@ -17,6 +17,9 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     @Query("SELECT u FROM Usuarios u WHERE u.Email=?1 and u.Password =?1")
     List<Usuarios> findByEmailAndPasswordList (String Email,String Password);
 
+    @Query("SELECT u FROM Usuarios u WHERE u.Email= ?1")
+    List<Usuarios> findByEmail(String Email);
+
 
 
     Usuarios saveAndFlush(Usuarios usuarios);
