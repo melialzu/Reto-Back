@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import edu.eafit.katio.Repository.UsuarioRepository;
 import edu.eafit.katio.models.Usuarios;
+import edu.eafit.katio.repository.UsuarioRepository;
 import edu.eafit.katio.services.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 
