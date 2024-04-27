@@ -26,7 +26,7 @@ public class UsuarioService implements BaseUsuarioService{
     }
 
 
-
+/* 
     @Override
     public Usuarios addUsuarios(Usuarios usuarios) {
         var usuarioCreado = new Usuarios();
@@ -59,7 +59,7 @@ public class UsuarioService implements BaseUsuarioService{
         }
         return hexString.toString();
     }
-    
+    */
 
 
 
@@ -74,8 +74,6 @@ public class UsuarioService implements BaseUsuarioService{
 
 
 
-
-
     @Override
     public Iterable<Usuarios> getUsuarioByNombre(String nombre) {
         return usuarioRepository.findByNombre(nombre);
@@ -84,7 +82,30 @@ public class UsuarioService implements BaseUsuarioService{
     @Override
     public Iterable<Usuarios> getUsuarioByIdentificacion(String identificacion){
         return usuarioRepository.findByIdentificacion(identificacion);
-    }}
+    }
+
+    @Override
+    public Iterable<Usuarios> getUsuarioByEmailAndPassword(String email, String password) {
+       return usuarioRepository.findByEmailAndPasswordList(email, password);
+    }
+
+    @Override
+    public Iterable<Usuarios> getUsuarioByEmail(String email) {
+       return usuarioRepository.findByEmail(email);
+    }
+
+    @Override
+    public Usuarios addUsuarios(Usuarios usuarios) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addUsuarios'");
+    }
+
+  
+
+  
+
+    
+    }
         
 
  
