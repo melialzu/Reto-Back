@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.eafit.katio.Repository.UsuarioRepository;
 import edu.eafit.katio.models.Usuarios;
 import edu.eafit.katio.services.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -60,13 +61,15 @@ public class UsuarioController {
     }
 
 
-    @GetMapping("/loguin")
-    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody String email,String password){
-        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByEmailAndPassword(email,password);
+    @PostMapping("/loguin")
+    public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody Usuarios usuarios){
+        var usuarioByEmail = new UsuarioService(usuarioRepository).getUsuarioByEmailAndPassword(usuarios.getEmail(),usuarios.getPassword());
         return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,HttpStatus.OK);
     } 
-
  
+
+
+
 /* 
  @GetMapping("/loguin")
     public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody String email){

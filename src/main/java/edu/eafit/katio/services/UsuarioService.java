@@ -100,6 +100,10 @@ public class UsuarioService implements BaseUsuarioService{
         throw new UnsupportedOperationException("Unimplemented method 'addUsuarios'");
     }
 
+  
+
+  
+
     
     }
         
