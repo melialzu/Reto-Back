@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.eafit.katio.Repository.BookRepository;
-import edu.eafit.katio.Repository.BooksByAuthorRepository;
+import edu.eafit.katio.dto.BooksByAuthor;
 import edu.eafit.katio.models.Books;
+import edu.eafit.katio.repository.BookRepository;
+import edu.eafit.katio.repository.BooksByAuthorRepository;
 import edu.eafit.katio.models.Authors;
-import edu.eafit.katio.Dto.BooksByAuthor;
 import edu.eafit.katio.services.BookService;
 
 

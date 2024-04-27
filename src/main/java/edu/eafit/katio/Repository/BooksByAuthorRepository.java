@@ -1,10 +1,10 @@
-package edu.eafit.katio.Repository;
+package edu.eafit.katio.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import edu.eafit.katio.Dto.BooksByAuthor;
+import edu.eafit.katio.dto.BooksByAuthor;
 
 public interface BooksByAuthorRepository extends JpaRepository<BooksByAuthor, Long> {
     

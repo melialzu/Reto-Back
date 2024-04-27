@@ -6,9 +6,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
-import edu.eafit.katio.Repository.UsuarioRepository;
 import edu.eafit.katio.interfaces.BaseUsuarioService;
 import edu.eafit.katio.models.Usuarios;
+import edu.eafit.katio.repository.UsuarioRepository;
 
 public class UsuarioService implements BaseUsuarioService{
 
