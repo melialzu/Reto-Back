@@ -1,4 +1,4 @@
-package edu.eafit.katio.Controller;
+package edu.eafit.katio.controller;
 
 import java.util.ArrayList;
 
