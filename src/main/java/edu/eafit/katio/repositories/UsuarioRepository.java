@@ -1,4 +1,4 @@
-package edu.eafit.katio.repository;
+package edu.eafit.katio.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;

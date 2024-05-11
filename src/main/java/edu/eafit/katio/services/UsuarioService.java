@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import edu.eafit.katio.interfaces.BaseUsuarioService;
 import edu.eafit.katio.models.Usuarios;
-import edu.eafit.katio.repository.UsuarioRepository;
+import edu.eafit.katio.repositories.UsuarioRepository;
 
 public class UsuarioService implements BaseUsuarioService{
 

@@ -1,4 +1,4 @@
-package edu.eafit.katio.controller;
+package edu.eafit.katio.controllers;
 
 import java.util.Optional;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eafit.katio.models.Usuarios;
-import edu.eafit.katio.repository.UsuarioRepository;
+import edu.eafit.katio.repositories.UsuarioRepository;
 import edu.eafit.katio.services.UsuarioService;
 
 
