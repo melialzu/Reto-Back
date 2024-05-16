@@ -22,11 +22,12 @@ public class AudioBooks {
     private String Genre;
 
 
-    private Boolean Abridged;
-    private Long LengthInSeconds;
-    private String Path;
-    private Long NarratorId;
+    private Boolean Abridged; //resumido o no 
+    private Long LengthInSeconds; // duracion en segundos 
+    private String Path; //donde esta ese libro en el disco 
+    //private Long NarratorId; // narrador //Se quita narrador porque se hace un modelo independiente 
     private Long AuthorId;
+    //private Languajes Languajes; // Enumeracion con el lenguaje del libro //Se quita Languajes porque se hace un cotrolador
 
     public String getTimeNotation(){
         var minutos = this.LengthInSeconds / 60;
@@ -117,13 +118,13 @@ public class AudioBooks {
         Path = path;
     }
 
-    public Long getNarratorId() {
-        return NarratorId;
-    }
+    //public Long getNarratorId() {
+    //    return NarratorId;
+    //}
 
-    public void setNarratorId(Long narratorId) {
-        NarratorId = narratorId;
-    }
+    //public void setNarratorId(Long narratorId) {
+    //    NarratorId = narratorId;
+    //}
 
     public Long getAuthorId() {
         return AuthorId;
