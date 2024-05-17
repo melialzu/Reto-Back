@@ -1,5 +1,6 @@
 package edu.eafit.katio.interfaces;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 import edu.eafit.katio.models.Usuarios;
@@ -10,7 +11,7 @@ public interface BaseUsuarioService {
     Optional<Usuarios> getUsuarioById(Integer id);
     Iterable<Usuarios>getUsuarioByNombre(String nombre);
     Iterable<Usuarios>getUsuarioByIdentificacion(String identificacion);
-    Iterable<Usuarios>getUsuarioByEmailAndPassword(String email, String password);
+    Usuarios getUsuarioByEmailAndPassword(String email, String password) throws NoSuchAlgorithmException;
     Iterable<Usuarios>getUsuarioByEmail(String email);
     
    

@@ -22,10 +22,17 @@ public class Usuarios{
     private String Telefono;
     private String Identificacion;
     private String Password; // Password. 
+    private String Salt;
     //Luchomon@pokemon.com || blake3(MeGustaPOkemon);
     
     
     
+    public String getSalt() {
+        return Salt;
+    }
+    public void setSalt(String salt) {
+        Salt = salt;
+    }
     public Integer getId() {
         return Id;
     }

@@ -30,7 +30,7 @@ public class AudioBooks {
     //private Languajes Languajes; // Enumeracion con el lenguaje del libro //Se quita Languajes porque se hace un cotrolador
 
     public String getTimeNotation(){
-        var minutos = this.LengthInSeconds / 60;
+        //var minutos = this.LengthInSeconds / 60;
         var horas = this.LengthInSeconds / 3600;
         return "Duracion: " + horas;
     }
