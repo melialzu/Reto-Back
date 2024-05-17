@@ -1,4 +1,4 @@
-package edu.eafit.katio.controller;
+package edu.eafit.katio.controllers;
 
 import java.util.ArrayList;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.eafit.katio.dto.BooksByAuthor;
+import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.models.Books;
-import edu.eafit.katio.repository.BookRepository;
-import edu.eafit.katio.repository.BooksByAuthorRepository;
+import edu.eafit.katio.repositories.BookRepository;
+import edu.eafit.katio.repositories.BooksByAuthorRepository;
 import edu.eafit.katio.models.Authors;
 import edu.eafit.katio.services.BookService;
 

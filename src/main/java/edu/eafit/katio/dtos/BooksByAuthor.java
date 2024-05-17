@@ -1,4 +1,4 @@
-package edu.eafit.katio.dto;
+package edu.eafit.katio.dtos;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
