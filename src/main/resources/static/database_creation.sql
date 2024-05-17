@@ -5,15 +5,16 @@ COLLATE = `uca1400_spanish_ai_ci`;
 
 Use Katio;
 
-CREATE TABLE Users
+CREATE TABLE usuarios
 (
     Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Name NVARCHAR(255) NOT NULL,
-    Lastname NVARCHAR(255) NOT NULL,
-    Email NVARCHAR(255) NOT NULL,
-    Phone NVARCHAR(20) NOT NULL,
-    Identification NVARCHAR(20) NOT NULL,
-    Passhash NVARCHAR(255) NOT NULL,
+    Nombre VARCHAR(255) NOT NULL,
+    Apellido VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Telefono VARCHAR(20) NOT NULL,
+    Identification VARCHAR(20) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Salt VARCHAR(500) NOT NULL,
     INDEX email_idx(Email)
 );
 
