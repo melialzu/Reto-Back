@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.eafit.katio.models.Authors;
 import edu.eafit.katio.repositories.AuthorRepository;
+import edu.eafit.katio.services.AuthorService;
 
 @RestController
 @RequestMapping("/katio/authors")
@@ -18,9 +19,17 @@ public class AuthorsController {
     @Autowired
     private AuthorRepository _authorRepository;
 
+    /*
+     * @GetMapping("/getall")
+     * public ResponseEntity<Iterable<Authors>> getAllAuthors() {
+     * var authors = _authorRepository.findAll();
+     * return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
+     * }
+     */
+
     @GetMapping("/getall")
     public ResponseEntity<Iterable<Authors>> getAllAuthors() {
-        var authors = _authorRepository.findAll();
+        var authors = new AuthorService(_authorRepository).getAllAuthors();
         return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
     }
 
