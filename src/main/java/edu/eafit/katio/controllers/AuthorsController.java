@@ -19,18 +19,12 @@ public class AuthorsController {
     @Autowired
     private AuthorRepository _authorRepository;
 
-    /*
-     * @GetMapping("/getall")
-     * public ResponseEntity<Iterable<Authors>> getAllAuthors() {
-     * var authors = _authorRepository.findAll();
-     * return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
-     * }
-     */
-
+    
     @GetMapping("/getall")
     public ResponseEntity<Iterable<Authors>> getAllAuthors() {
-        var authors = new AuthorService(_authorRepository).getAllAuthors();
-        return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
+    var authors = _authorRepository.findAll();
+    return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
     }
 
+    
 }
