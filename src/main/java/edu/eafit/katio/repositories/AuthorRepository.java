@@ -1,4 +1,4 @@
-package edu.eafit.katio.Repository;
+package edu.eafit.katio.repositories;
 
 public class AuthorRepository {
     

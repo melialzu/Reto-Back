@@ -2,11 +2,11 @@ package edu.eafit.katio.services;
 
 import java.util.ArrayList;
 
-import edu.eafit.katio.Dto.BooksByAuthor;
-import edu.eafit.katio.Repository.BookRepository;
-import edu.eafit.katio.Repository.BooksByAuthorRepository;
+import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.interfaces.BaseBookService;
 import edu.eafit.katio.models.Books;
+import edu.eafit.katio.repositories.BookRepository;
+import edu.eafit.katio.repositories.BooksByAuthorRepository;
 
 public class BookService implements BaseBookService {
     

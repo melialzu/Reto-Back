@@ -1,6 +1,6 @@
 package edu.eafit.katio.interfaces;
 
-import edu.eafit.katio.Dto.BooksByAuthor;
+import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.models.Books;
 
 public interface BaseBookService {

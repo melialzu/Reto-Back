@@ -29,7 +29,7 @@ public class AudioBooks {
     private Long AuthorId;
 
     public String getTimeNotation(){
-        var minutos = this.LengthInSeconds / 60;
+        //var minutos = this.LengthInSeconds / 60;
         var horas = this.LengthInSeconds / 3600;
         return "Duracion: " + horas;
     }

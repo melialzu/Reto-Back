@@ -1,4 +1,4 @@
-package edu.eafit.katio.Controller;
+package edu.eafit.katio.controllers;
 
 public class AuthorsController {
     
