@@ -22,7 +22,6 @@ public class UsuarioService implements BaseUsuarioService {
     @Override
     public Iterable<Usuarios> getAllUsuarios() {
         var listaUsuarios = usuarioRepository.findAll();
-
         return listaUsuarios;
     }
 

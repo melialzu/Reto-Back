@@ -78,7 +78,7 @@ public class UsuarioController {
      */
 
     @PostMapping("/add")
-    public ResponseEntity<Usuarios> addUsurios(@RequestBody Usuarios usuarios) {
+    public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios) {
         var usuarioCreado = new UsuarioService(usuarioRepository).addUsuarios(usuarios);
         return usuarioCreado.getId() == 0 ? new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.BAD_REQUEST)
                 : new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.OK);
