@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eafit.katio.models.Authors;
-import edu.eafit.katio.models.Usuarios;
 import edu.eafit.katio.repositories.AuthorRepository;
 import edu.eafit.katio.services.AuthorService;
-import edu.eafit.katio.services.UsuarioService;
+
 
 
 @RestController

@@ -1,6 +1,5 @@
 package edu.eafit.katio.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import edu.eafit.katio.interfaces.BaseAuthorService;
@@ -40,14 +39,4 @@ public class AuthorService implements BaseAuthorService {
         return _AuthorRepository.findByCountry(country);
         
     }
-
- 
-
-   
-
-  
-
-    }
-
-
-   
+}

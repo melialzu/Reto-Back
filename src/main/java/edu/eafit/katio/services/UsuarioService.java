@@ -1,7 +1,5 @@
 package edu.eafit.katio.services;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Formatter;
 import java.util.Optional;
