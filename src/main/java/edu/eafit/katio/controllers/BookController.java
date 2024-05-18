@@ -45,27 +45,39 @@ public class BookController {
         return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
     }
     
+    // Traer libros por Id del Autor
+    @GetMapping("/getByAuthorId")
+    public ResponseEntity<Iterable<BooksByAuthor>> getAllBooksByAuthorsId(@RequestBody Integer Id)
+    {
+        var response = new ArrayList<BooksByAuthor>();
+        response.add(new BooksByAuthor());
+        return new ResponseEntity<Iterable<BooksByAuthor>>(response, HttpStatus.OK);
+    }
+
+    // Traer libros por Nombre del Autor
+    @GetMapping("/getByAuthorNames")
+    public ResponseEntity<Iterable<BooksByAuthor>> getAllBooksByAuthorsName(@RequestBody Authors author) 
+    {
+        var response = new ArrayList<BooksByAuthor>();
+        response.add(new BooksByAuthor());
+        return new ResponseEntity<Iterable<BooksByAuthor>>(response, HttpStatus.OK);
+    }
+
+    // Traer Libros por Nombre del Libro
+    @GetMapping("/getBooksByName")
+    public ResponseEntity<Iterable<Books>> getBookByName(@RequestBody Books book) 
+    {
+        var response = new BookService(_bookRepository).getBooksByName(book.getName());
+        return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
+    }
+
+    // Traer libros por Nombre y Apellido del Autor
     @GetMapping("/getByAuthor/{Name}/{LastName}")
     public ResponseEntity<Iterable<BooksByAuthor>> getAllBooksByAuthor(@PathVariable("Name") String Name, @PathVariable("LastName") String LastName)
     {
         var response = new BookService(_BooksByAuthorRepository).getAllBooksByAuthor(Name, LastName);
         return new ResponseEntity<Iterable<BooksByAuthor>>(response, HttpStatus.OK);
     }
-
-    @GetMapping("/getByAuthorNames")
-    public ResponseEntity<Iterable<BooksByAuthor>> getAllBooksByAuthorsName(@RequestBody Authors author) {
-        var response = new ArrayList<BooksByAuthor>();
-        response.add(new BooksByAuthor());
-        return new ResponseEntity<Iterable<BooksByAuthor>>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/getBooksByName")
-    public ResponseEntity<Iterable<Books>> getBookByName(@RequestBody Books book) {
-        var response = new BookService(_bookRepository).getBooksByName(book.getName());
-        return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
-    }
-
-
 
 
 }
