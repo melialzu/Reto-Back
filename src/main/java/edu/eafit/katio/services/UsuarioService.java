@@ -28,7 +28,7 @@ public class UsuarioService implements BaseUsuarioService {
         var usuarioCreado = new Usuarios();
 
         try {
-            if (usuarios.getPassword().length() > 15) {
+            if (usuarios.getPassword().length() > 5) {
 
                 String salt = GenerateSalt();
                 String password = hashPassword(usuarios.getPassword(), salt);

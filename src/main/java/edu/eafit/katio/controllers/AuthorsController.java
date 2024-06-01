@@ -41,7 +41,6 @@ public class AuthorsController {
 
     }
 
-
     @GetMapping("/id")
     public ResponseEntity<Optional<Authors>> getAuthorById(@RequestParam("Id") Long id) {
 
