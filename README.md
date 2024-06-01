@@ -16,24 +16,24 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Usuarios
 
-- [ ] Crear un usuario, utilizar el registro.
+- [x] Crear un usuario, utilizar el registro.
 - [ ] Login del usuario: debe regresar un token bearer. Al hacer login, debo poder usar el token para cualquier otra acción.
 - [ ] Todas mis acciones deben quedar bajo llave, con la sola excepción de: Login, Signup.
 - [ ] Editar un usuario.
 - [ ] Debo poder reiniciar mi clave, solo mi clave. Debo colocar la clave anterior, y dos veces la clave nueva.
-- [ ] Listar todos mis usuarios.
-- [ ] Listar todos mis usuarios por email, o identificación.
+- [x] Listar todos mis usuarios.
+- [x] Listar todos mis usuarios por email, o identificación.
 - [ ] Agregar un username. No todos los usuarios tienen un correo hábil. Ambos campos son distintos, pero puede repetir la información.
 - [ ] Manejar los perfiles (Roles) del usuario.
 
 ### Libros
 
-- [ ] Crear un libro.
+- [x] Crear un libro.
 - [ ] Editar un libro.
-- [ ] Buscar libro por nombre, de forma relativa.
-- [ ] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
-- [ ] Buscar libro por editorial.
-- [ ] Buscar libro por género.
+- [x] Buscar libro por nombre, de forma relativa.
+- [x] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
+- [x] Buscar libro por editorial.
+- [x] Buscar libro por género.
 - [ ] Buscar libro por fecha de publicación.
 - [ ] Subir un libro en PDF a la biblioteca.
 - [ ] Servir un libro en PDF al cliente.
@@ -65,12 +65,12 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Autores
 
-- [ ] Crear un autor.
+- [x] Crear un autor.
 - [ ] Editar un autor.
-- [ ] Buscar un autor por nombre y apellido de forma relativa.
+- [x] Buscar un autor por nombre y apellido de forma relativa.
 - [ ] Buscar un autor por fecha de nacimiento.
-- [ ] Buscar un autor por país de procedencia.
-- [ ] Buscar todos los libros de un autor por relación.
+- [x] Buscar un autor por país de procedencia.
+- [x] Buscar todos los libros de un autor por relación.
 - [ ] Buscar todos los audiolibros de un autor por relación.
 
 ### Narradores
