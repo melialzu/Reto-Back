@@ -1,6 +1,8 @@
 package edu.eafit.katio.models;
 
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +25,17 @@ public class Usuarios{
     private String Identificacion;
     private String Password; // Password. 
     private String Salt;
+    private String Username;
+
     //Luchomon@pokemon.com || blake3(MeGustaPOkemon);
     
-    
+      
+    public String getUsername() {
+        return Username;
+    }
+    public void setUsername(String username) {
+        Username = username;
+    }   
     
     public String getSalt() {
         return Salt;

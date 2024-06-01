@@ -147,4 +147,29 @@ public class UsuarioService implements BaseUsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-}
+    @Override
+    public Usuarios updateUsuarioByUsername(String username, Usuarios updatedUsuario) {
+        Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(username);
+        if (optionalUsuario.isPresent()) {
+            Usuarios existingUsuario = optionalUsuario.get();
+            existingUsuario.setNombre(updatedUsuario.getNombre());
+            existingUsuario.setApellido(updatedUsuario.getApellido());
+            existingUsuario.setEmail(updatedUsuario.getEmail());
+            existingUsuario.setTelefono(updatedUsuario.getTelefono());
+            existingUsuario.setIdentificacion(updatedUsuario.getIdentificacion());
+            // Manejar la actualización de la contraseña si es necesario
+            // ...
+            return usuarioRepository.saveAndFlush(existingUsuario);
+        } else {
+            return null; // Usuario no encontrado
+        }
+    }
+
+  
+    
+      
+    
+
+    
+  }
+   
