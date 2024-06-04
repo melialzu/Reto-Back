@@ -28,19 +28,19 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * FROM audiobooks WHERE (Name ILIKE CONCAT('%',:name, '%'))"
+        value = "SELECT * FROM audiobooks WHERE name LIKE CONCAT('%',:name, '%')"
     )
     Iterable<AudioBooks> findAudioBooksByName(@Param("name") String name);
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * from audiobooks WHERE Edition LIKE '%:edition%' "
+        value = "SELECT * FROM audiobooks WHERE edition LIKE CONCAT('%',:edition,'%')"
     )
-    Iterable<AudioBooks> findAudioBooksByEdition(@Param("edition") String edition); //hacer con SELECT FROM
+    Iterable<AudioBooks> findAudioBooksByEdition(@Param("edition")String edition); //hacer con SELECT FROM
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * from audiobooks WHERE LengthInSeconds LIKE '%:lengthInSeconds%' "
+        value = "SELECT * from audiobooks WHERE lengthInSeconds LIKE '%:lengthInSeconds%' "
     )
     Iterable<AudioBooks> findAudioBooksByLengthInSeconds(@Param("lengthInSeconds") Long lengthInSeconds);
 
