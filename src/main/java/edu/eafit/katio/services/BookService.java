@@ -1,6 +1,7 @@
 package edu.eafit.katio.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.interfaces.BaseBookService;
@@ -55,7 +56,40 @@ public class BookService implements BaseBookService {
         var bookList = _bookRepository.findByGenre(Genre);
         return bookList;
     }
-
+    
+    // Editar un Libro
+    @Override
+    public Books updateBookByName(String Name, Books updateBooks) {
+       Optional<Books> optionalBooks = _bookRepository.findByNameEdit(Name);
+        if (optionalBooks.isPresent()) { //Verificar si el libro esta
+            Books existingBooks = optionalBooks.get(); //Si esta lo trae
+            
+            // Actualizar cada dato
+            if (updateBooks.getName() != null) {
+                existingBooks.setName(updateBooks.getName());
+            }
+            if (updateBooks.getISBN10() != null) {
+                existingBooks.setISBN10(updateBooks.getISBN10());
+            }
+            if (updateBooks.getISBN13() != null) {
+                existingBooks.setISBN13(updateBooks.getISBN13());
+            }
+            if (updateBooks.getPublished() != null) {
+                existingBooks.setPublished(updateBooks.getPublished());
+            }
+            if (updateBooks.getEdition() != null) {
+                existingBooks.setEdition(updateBooks.getEdition());
+            }
+            if (updateBooks.getGenre() != null) {
+                existingBooks.setGenre(updateBooks.getGenre());
+            }
+            // DeweyIndex
+            // AuthorId
+            return _bookRepository.saveAndFlush(existingBooks);
+        } else {
+            return null; // Libro no encontrado
+        }
+    }
     
     // Crear Libro
     @Override
@@ -66,7 +100,7 @@ public class BookService implements BaseBookService {
     }
 
 
-
+    // Traer libros por Id del autor
     @Override
     public Iterable<BooksByAuthor> getAllBooksByAuthorId(Integer idAuthor) {
        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
@@ -74,6 +108,7 @@ public class BookService implements BaseBookService {
        return bookList;
     }
 
+    // Traer libros por el nombre del autor
     @Override 
     public Iterable<BooksByAuthor> getAllBooksByAuthorName(String nameAuthor) {
         Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
@@ -81,6 +116,7 @@ public class BookService implements BaseBookService {
         return bookList;
     }
 
+    // Traer libros por el nombre y/o apellido del autor
     @Override
     public Iterable<BooksByAuthor> getAllBooksByAuthor(String nameAuthor, String lastNameAuthor) {
         Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();

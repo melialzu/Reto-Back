@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,29 @@ public class BookController {
 
 
     //Metodos de model Book
+
+    // Crear un Libro
+    @PostMapping("/add")
+    public ResponseEntity<Books> addBooks(@RequestBody Books books) 
+    {
+        var response = new BookService(_bookRepository).addBooks(books);
+        return response.getId() == 0 ? new ResponseEntity<Books>(response, HttpStatus.BAD_REQUEST)
+                : new ResponseEntity<Books>(response, HttpStatus.OK);
+    }
+
+    // Editar un libro
+    @SuppressWarnings("unused")
+    @PutMapping("/update/{name}")
+    public ResponseEntity<Object> updateBook(@PathVariable("name") String Name, @RequestBody Books updateBooks) {
+        var bookService = new BookService(_bookRepository);
+        Books updateBook = bookService.updateBookByName(Name, updateBooks);
+        if (bookService != null) {
+            return new ResponseEntity<>(updateBook, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Libro no Encontrado", HttpStatus.NOT_FOUND);
+        }
+    }
+
     // Traer Todos los Libros
     @GetMapping("/getall")
     public ResponseEntity<Iterable<Books>> getAllBooks() {
@@ -75,14 +99,7 @@ public class BookController {
     
 
 
-    // Crear un Libro
-    @PostMapping("/add")
-    public ResponseEntity<Books> addBooks(@RequestBody Books books) 
-    {
-        var response = new BookService(_bookRepository).addBooks(books);
-        return response.getId() == 0 ? new ResponseEntity<Books>(response, HttpStatus.BAD_REQUEST)
-                : new ResponseEntity<Books>(response, HttpStatus.OK);
-    }
+    
 
 
     // Metodos del Dto BooksByAuthor

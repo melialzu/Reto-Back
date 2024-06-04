@@ -12,6 +12,8 @@ public interface BaseBookService {
 
     Books addBooks(Books books);
 
+    Books updateBookByName(String Name, Books updateBooks);
+
     Iterable<BooksByAuthor> getAllBooksByAuthorId(Integer idAuthor);
     Iterable<BooksByAuthor> getAllBooksByAuthorName(String nameAuthor);
     Iterable<BooksByAuthor> getAllBooksByAuthor(String nameAuthor, String lastNameAuthor);
