@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,9 +29,22 @@ public class Usuarios{
     private String Salt;
     private String Username;
 
-    //Luchomon@pokemon.com || blake3(MeGustaPOkemon);
+     @Enumerated(EnumType.STRING) //indicar a JPA que los valores del enum deben almacenarse como cadenas en la base de datos.
+    private Roles Role;
+  
+
+
+ 
     
-      
+    public Roles getRole() {
+        return Role;
+    }
+
+    public void setRole(Roles role) {
+        Role = role;
+    }
+ 
+
     public String getUsername() {
         return Username;
     }

@@ -92,15 +92,17 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Admin / Estadísticas
 
-- [ ] Ver mis usuarios, editarlos y desactivarlos.
-- [ ] Asignar una clave de forma directa a un usuario a través de la edición.
-- [ ] El username y el email no son mutables.
+- [ ] Ver mis usuarios, editarlos y desactivarlos. (Meli)
+- [ ] Asignar una clave de forma directa a un usuario a través de la edición. (Meli)
+- [ ] El username y el email no son mutables. (Meli)
+*********
 - [ ] Agregar estadísticas al sitio.
 - [ ] Cada vez que se descargue un libro, tener un contador que se encargue de llevar la cuenta.
 - [ ] Cada vez que se reproduzca un audiolibro, tener un contador que se encargue de llevar la cuenta.
-- [ ] Cada vez que se mire el perfil de un autor con sus libros, tener un contador que se encargue de llevar la cuenta.
+- [ ] Cada vez que se mire el perfil de un autor con sus libros, tener un contador que se encargue de llevar la cuenta. (Sam cada vez que se llame el servicio autor por nombre-apellido )
 - [ ] Cada vez que se descargue un libro o se escuche un audiolibro, marcar el género en una tabla de contadores que lleve la cuenta.
-- [ ] Última conexión al usuario.
+
+- [ ] Última conexión al usuario. (meli)
 - [ ] Llevar la cuenta de cuántos días distintos se conecta un usuario. Diferente a la última conexión.
 - [ ] Agregar logs al sistema.
 - [ ] Basada en las conexiones y la cuenta de las mismas, emitir una estadística que diga cuáles son los días más activos para el sistema.
