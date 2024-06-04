@@ -33,7 +33,8 @@ public class BookController {
     private BooksByAuthorRepository _BooksByAuthorRepository;
 
     @GetMapping("/getall")
-    public ResponseEntity<Iterable<Books>> getAllBooks() {
+    public ResponseEntity<Iterable<Books>> getAllBooks() 
+    {
         var books = new BookService(_bookRepository) .getAllBooks();
         return new ResponseEntity<Iterable<Books>>(books, HttpStatus.OK);
     }

@@ -24,17 +24,27 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
         "WHERE (:author = '' OR (a.Name ILIKE CONCAT('%',:author, '%')) \n"
     )
     Iterable<AudioBooks> findAudioBooksByAuthor(@Param("author") String author);
+    
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * FROM audiobooks WHERE (Name ILIKE CONCAT('%',:name, '%')"
+        value = "SELECT * FROM audiobooks WHERE (Name ILIKE CONCAT('%',:name, '%'))"
     )
     Iterable<AudioBooks> findAudioBooksByName(@Param("name") String name);
 
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * from audiobooks WHERE Edition LIKE '%:edition%' "
+    )
+    Iterable<AudioBooks> findAudioBooksByEdition(@Param("edition") String edition); //hacer con SELECT FROM
 
-    Iterable<AudioBooks> findAudioBooksByEdition(String edition);
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * from audiobooks WHERE LengthInSeconds LIKE '%:lengthInSeconds%' "
+    )
+    Iterable<AudioBooks> findAudioBooksByLengthInSeconds(@Param("lengthInSeconds") Long lengthInSeconds);
 
-    Iterable<AudioBooks> findAudioBooksByLengthInSeconds(Long lengthInSeconds);
+    //Iterable<AudioBooks> findAudioBooksByLengthInSeconds(Long lengthInSeconds); //hacer con SELECT FROM
 
     AudioBooks saveAndFlush(AudioBooks audioBooks);
     
