@@ -19,11 +19,11 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 - [x] Crear un usuario, utilizar el registro.
 - [ ] Login del usuario: debe regresar un token bearer. Al hacer login, debo poder usar el token para cualquier otra acción.
 - [ ] Todas mis acciones deben quedar bajo llave, con la sola excepción de: Login, Signup.
-- [ ] Editar un usuario.
+- [x] Editar un usuario.
 - [ ] Debo poder reiniciar mi clave, solo mi clave. Debo colocar la clave anterior, y dos veces la clave nueva.
 - [x] Listar todos mis usuarios.
 - [x] Listar todos mis usuarios por email, o identificación.
-- [ ] Agregar un username. No todos los usuarios tienen un correo hábil. Ambos campos son distintos, pero puede repetir la información.
+- [x] Agregar un username. No todos los usuarios tienen un correo hábil. Ambos campos son distintos, pero puede repetir la información.
 - [ ] Manejar los perfiles (Roles) del usuario.
 
 ### Libros

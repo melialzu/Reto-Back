@@ -148,25 +148,32 @@ public class UsuarioService implements BaseUsuarioService {
     }
 
     @Override
-    public Usuarios updateUsuarioByUsername(String username, Usuarios updatedUsuario) {
-        Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(username);
-        if (optionalUsuario.isPresent()) {
-            Usuarios existingUsuario = optionalUsuario.get();
-            existingUsuario.setNombre(updatedUsuario.getNombre());
-            existingUsuario.setApellido(updatedUsuario.getApellido());
-            existingUsuario.setEmail(updatedUsuario.getEmail());
-            existingUsuario.setTelefono(updatedUsuario.getTelefono());
-            existingUsuario.setIdentificacion(updatedUsuario.getIdentificacion());
-            // Manejar la actualización de la contraseña si es necesario
-            // ...
-            return usuarioRepository.saveAndFlush(existingUsuario);
+    public Usuarios updateUsuarioByUsername(String username, Usuarios updatedUsuario) { // Metodo que recibe el username del usuario que se desea actualizar
+        Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(username); //Llama al método findByUsername del repositorio usuarioRepository para buscar un usuario con el nombre de usuario proporcionado.
+        if (optionalUsuario.isPresent()) { //Verifica si optionalUsuario contiene un valor (es decir, si el usuario fue encontrado).
+            Usuarios existingUsuario = optionalUsuario.get(); //Si el usuario existe, obtiene el usuario actual de optionalUsuario.
+            
+            if (updatedUsuario.getNombre() != null) {
+                existingUsuario.setNombre(updatedUsuario.getNombre()); //Actualiza cada campo del usuario existente con los valores del usuario actualizado (updatedUsuario).
+            }
+            if (updatedUsuario.getApellido() != null) {
+                existingUsuario.setApellido(updatedUsuario.getApellido());
+            }
+            if (updatedUsuario.getEmail() != null) {
+                existingUsuario.setEmail(updatedUsuario.getEmail());
+            }
+            if (updatedUsuario.getTelefono() != null) {
+                existingUsuario.setTelefono(updatedUsuario.getTelefono());
+            }
+            if (updatedUsuario.getIdentificacion() != null) {
+                existingUsuario.setIdentificacion(updatedUsuario.getIdentificacion());
+            }
+    
+            return usuarioRepository.saveAndFlush(existingUsuario); //Guarda los cambios en la base de datos usando el método saveAndFlush del repositorio usuarioRepository
         } else {
             return null; // Usuario no encontrado
         }
     }
-
-  
-    
       
     
 
