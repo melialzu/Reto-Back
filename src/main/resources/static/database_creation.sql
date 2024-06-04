@@ -55,7 +55,7 @@ CREATE TABLE Audiobooks
     Edition NVARCHAR(255) NOT NULL,
     Genre NVARCHAR(255) NOT NULL,
     Abridged BIT NOT NULL,
-    LengthInSeconds INT UNSIGNED NOT NULL,
+    Length_in_seconds INT UNSIGNED NOT NULL,
     Path NVARCHAR(255) NOT NULL,
     Author_Id INT UNSIGNED NOT NULL,
     CONSTRAINT `fk_audiobooks_author`
