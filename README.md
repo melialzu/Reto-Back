@@ -46,11 +46,11 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Audiolibros
 
-- [ ] Crear un audiolibro.
+- [x] Crear un audiolibro.
 - [ ] Editar un audiolibro.
-- [ ] Buscar audiolibro por nombre, de forma relativa.
+- [x] Buscar audiolibro por nombre, de forma relativa.
 - [ ] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
-- [ ] Buscar audiolibro por editorial.
+- [x] Buscar audiolibro por editorial.
 - [ ] Buscar audiolibro por género.
 - [ ] Buscar audiolibro por fecha de publicación.
 - [ ] Subir un audiolibro en MP3/OGG a la biblioteca.
