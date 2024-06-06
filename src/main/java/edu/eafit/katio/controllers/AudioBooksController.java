@@ -1,5 +1,7 @@
 package edu.eafit.katio.controllers;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,6 +72,13 @@ public class AudioBooksController {
     public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByGenre(@RequestParam("genre") String genre)
     {
         var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByGenre(genre);
+        return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);
+    }
+
+    @GetMapping("/getByPublished")
+    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByPublishedDate(@RequestParam("published") Date published)
+    {
+        var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByPublishedDate(published);
         return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);
     }
     

@@ -1,5 +1,7 @@
 package edu.eafit.katio.services;
 
+import java.sql.Date;
+
 import edu.eafit.katio.interfaces.BaseAudioBookServices;
 import edu.eafit.katio.models.AudioBooks;
 import edu.eafit.katio.repositories.AudioBooksRepository;
@@ -41,6 +43,11 @@ public class AudioBookService implements BaseAudioBookServices{
 
     public Iterable<AudioBooks> findAudioBooksByGenre(String genre){
         var audioBookList = _AudioBooksRepository.findAudioBooksByGenre(genre);
+        return audioBookList;
+    }
+
+    public Iterable<AudioBooks> findAudioBooksByPublishedDate(Date published){
+        var audioBookList = _AudioBooksRepository.findAudioBooksByPublishedDate(published);
         return audioBookList;
     }
     

@@ -1,5 +1,6 @@
 package edu.eafit.katio.repositories;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
@@ -52,5 +53,10 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
         value = "SELECT * from audiobooks WHERE genre LIKE %:genre% "
     )
     Iterable<AudioBooks> findAudioBooksByGenre(@Param("genre")String genre);
-    
+
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * from audiobooks where published LIKE %:published% "
+    )
+    Iterable<AudioBooks> findAudioBooksByPublishedDate(@Param("published")Date published);
 }
