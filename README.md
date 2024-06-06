@@ -29,19 +29,19 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Libros
 
 - [x] Crear un libro.
-- [x] Editar un libro.
+- [ ] Editar un libro.
 - [x] Buscar libro por nombre, de forma relativa.
 - [x] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
 - [x] Buscar libro por editorial.
 - [x] Buscar libro por género.
-- [ ] Buscar libro por fecha de publicación.
+- [x] Buscar libro por fecha de publicación.
 - [ ] Subir un libro en PDF a la biblioteca.
 - [ ] Servir un libro en PDF al cliente.
 - [ ] Agregar varios géneros a un libro.
 - [ ] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
 - [ ] Un libro puede tener varios temas.
-- [ ] No pueden haber dos versiones del mismo libro.
+- [x] No pueden haber dos versiones del mismo libro.
 - [ ] Agregar libros relacionados a un libro principal.
 
 ### Audiolibros
