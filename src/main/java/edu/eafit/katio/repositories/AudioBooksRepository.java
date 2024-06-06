@@ -21,7 +21,7 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
         nativeQuery = true,
         value = "SELECT ab.* FROM audiobooks ab \n" +
         "INNER JOIN authors a ON ab.Author_Id = a.ID \n" +
-        "WHERE (:author = '' OR (a.Name ILIKE CONCAT('%',:author, '%')) \n"
+        "WHERE (:author = '' OR (a.Name LIKE CONCAT('%',:author, '%'))) \n"
     )
     Iterable<AudioBooks> findAudioBooksByAuthor(@Param("author") String author);
     
@@ -40,12 +40,18 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * from audiobooks WHERE lengthInSeconds LIKE '%:lengthInSeconds%' "
+        value = "SELECT * from audiobooks WHERE length_in_seconds LIKE %:lengthInSeconds% "
     )
     Iterable<AudioBooks> findAudioBooksByLengthInSeconds(@Param("lengthInSeconds") Long lengthInSeconds);
 
     //Iterable<AudioBooks> findAudioBooksByLengthInSeconds(Long lengthInSeconds); //hacer con SELECT FROM
 
     AudioBooks saveAndFlush(AudioBooks audioBooks);
+
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * from audiobooks WHERE genre LIKE %:genre% "
+    )
+    Iterable<AudioBooks> findAudioBooksByGenre(@Param("genre")String genre);
     
 }

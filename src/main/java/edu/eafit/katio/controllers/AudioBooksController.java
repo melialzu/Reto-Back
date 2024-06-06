@@ -58,4 +58,19 @@ public class AudioBooksController {
         return response.getId() == 0 ? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
         : new ResponseEntity<AudioBooks>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/getByAuthor")
+    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByAuthor(@RequestParam("author") String author)
+    {
+        var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByAuthor(author);
+        return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);
+    }
+
+    @GetMapping("/getByGenre")
+    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByGenre(@RequestParam("genre") String genre)
+    {
+        var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByGenre(genre);
+        return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);
+    }
+    
 }

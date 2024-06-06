@@ -34,6 +34,17 @@ public class AudioBookService implements BaseAudioBookServices{
         return audioBookList;
     }
     
+    public Iterable<AudioBooks> findAudioBooksByAuthor(String author){
+        var audioBookList = _AudioBooksRepository.findAudioBooksByAuthor(author);
+        return audioBookList;
+    }
+
+    public Iterable<AudioBooks> findAudioBooksByGenre(String genre){
+        var audioBookList = _AudioBooksRepository.findAudioBooksByGenre(genre);
+        return audioBookList;
+    }
+    
+    //Hacer la validacion para ver si ya existe el audiolibro
     public AudioBooks createAudioBooks(AudioBooks audioBooks) {
         var audioBook = _AudioBooksRepository.save(audioBooks);
         return audioBook;
