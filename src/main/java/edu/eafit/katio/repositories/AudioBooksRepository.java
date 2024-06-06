@@ -44,7 +44,6 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
     )
     Iterable<AudioBooks> findAudioBooksByLengthInSeconds(@Param("lengthInSeconds") Long lengthInSeconds);
 
-    //Iterable<AudioBooks> findAudioBooksByLengthInSeconds(Long lengthInSeconds); //hacer con SELECT FROM
 
     AudioBooks saveAndFlush(AudioBooks audioBooks);
 
