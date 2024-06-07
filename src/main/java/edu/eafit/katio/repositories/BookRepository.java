@@ -1,5 +1,6 @@
 package edu.eafit.katio.repositories;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,11 @@ public interface BookRepository extends CrudRepository<Books, Long> {
     @Query(
         nativeQuery = true, 
         value = "SELECT * FROM BOOKS WHERE Name LIKE %:name%")
+    Optional<Books> findByNameAdd(@Param("name") String name);
+
+    @Query(
+        nativeQuery = true, 
+        value = "SELECT * FROM BOOKS WHERE Name LIKE %:name%")
     Optional<Books> findByNameEdit(@Param("name") String name);
 
     @Query(
@@ -35,6 +41,14 @@ public interface BookRepository extends CrudRepository<Books, Long> {
         nativeQuery = true,
         value = "SELECT * FROM BOOKS WHERE Genre LIKE %:genre%")
     List<Books> findByGenre(@Param("genre") String genre);
+
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * FROM BOOKS WHERE Published BETWEEN :startDate AND :endDate"
+    )
+    List<Books> findByPublishedDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+
 
     Books saveAndFlush(Books books);
 } 

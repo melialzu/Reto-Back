@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 import edu.eafit.katio.dtos.BooksByAuthor;
 
 public interface BooksByAuthorRepository extends CrudRepository<BooksByAuthor, Long> {
@@ -16,7 +18,7 @@ public interface BooksByAuthorRepository extends CrudRepository<BooksByAuthor, L
             "FROM Authors au " +
             "JOIN Books bk ON bk.author_id = au.id " +
             "WHERE au.id = :idAuthor")
-    Iterable<BooksByAuthor> findByAuthorId(@Param("idAuthor") Integer idAuthor);
+    List<BooksByAuthor> findByAuthorId(@Param("idAuthor") Integer idAuthor);
 
     // Find by Name
     @Query(nativeQuery = true,
@@ -26,7 +28,7 @@ public interface BooksByAuthorRepository extends CrudRepository<BooksByAuthor, L
             "FROM Authors au " +
             "JOIN Books bk ON bk.author_id = au.id " +
             "WHERE au.Name LIKE %:name%")
-    Iterable<BooksByAuthor> findByAuthorName(@Param("name") String name);
+    List<BooksByAuthor> findByAuthorName(@Param("name") String name);
 
     @Query(nativeQuery = true,
         value = "SELECT " +
@@ -35,7 +37,7 @@ public interface BooksByAuthorRepository extends CrudRepository<BooksByAuthor, L
                 "FROM Authors au " +
                 "JOIN Books bk ON bk.author_id = au.id " +
                 "WHERE au.LastName LIKE %:lastname%")
-    Iterable<BooksByAuthor> findByAuthorLastName(@Param("lastname") String lastName);
+    List<BooksByAuthor> findByAuthorLastName(@Param("lastname") String lastName);
 
 
     // Find by FullName
@@ -46,7 +48,7 @@ public interface BooksByAuthorRepository extends CrudRepository<BooksByAuthor, L
                 "FROM Authors au " +
                 "JOIN Books bk ON bk.author_id = au.id " +
                 "WHERE au.LastName LIKE %:lastname% OR au.Name LIKE %:name%")
-    Iterable<BooksByAuthor> findByAuthorFullName(@Param("lastname") String lastNameAuthor, @Param("name") String nameAuthor);
+    List<BooksByAuthor> findByAuthorFullName(@Param("lastname") String lastNameAuthor, @Param("name") String nameAuthor);
 
 
 }

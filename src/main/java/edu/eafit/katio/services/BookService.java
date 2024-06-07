@@ -3,6 +3,9 @@ package edu.eafit.katio.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import java.util.List;
+import java.util.Date;
+
 import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.interfaces.BaseBookService;
 import edu.eafit.katio.models.Books;
@@ -31,95 +34,89 @@ public class BookService implements BaseBookService {
 
     // Traer Libros por Id
     @Override
-    public Iterable<Books> getBooksById(Integer Id) {
+    public List<Books> getBooksById(Integer Id) {
         var bookList = _bookRepository.findById(Id);
         return bookList;
     }
 
     // Traer Libros por Nombre
     @Override
-    public Iterable<Books> getBooksByName(String Name) {
+    public List<Books> getBooksByName(String Name) {
         var bookList = _bookRepository.findByName(Name);
         return bookList;
     }
 
     //Traer Libros por Editorial
     @Override
-    public Iterable<Books> getBooksByEdition(String Edition) {
+    public List<Books> getBooksByEdition(String Edition) {
         var bookList = _bookRepository.findByEdition(Edition);
         return bookList;
     }
 
     //Traer Libros por Genero
     @Override
-    public Iterable<Books> getBooksByGenre(String Genre) {
+    public List<Books> getBooksByGenre(String Genre) {
         var bookList = _bookRepository.findByGenre(Genre);
         return bookList;
     }
-    
+
+    // Traer libros por rango de fechas de publicación
+    public List<Books> getBooksByDateRange(Date startDate, Date endDate) {
+        var bookList = _bookRepository.findByPublishedDateBetween(startDate, endDate);
+        return bookList;
+    }
+
     // Editar un Libro
     @Override
-    public Books updateBookByName(String Name, Books updateBooks) {
-       Optional<Books> optionalBooks = _bookRepository.findByNameEdit(Name);
-        if (optionalBooks.isPresent()) { //Verificar si el libro esta
-            Books existingBooks = optionalBooks.get(); //Si esta lo trae
-            
-            // Actualizar cada dato
-            if (updateBooks.getName() != null) {
-                existingBooks.setName(updateBooks.getName());
-            }
-            if (updateBooks.getISBN10() != null) {
-                existingBooks.setISBN10(updateBooks.getISBN10());
-            }
-            if (updateBooks.getISBN13() != null) {
-                existingBooks.setISBN13(updateBooks.getISBN13());
-            }
-            if (updateBooks.getPublished() != null) {
-                existingBooks.setPublished(updateBooks.getPublished());
-            }
-            if (updateBooks.getEdition() != null) {
-                existingBooks.setEdition(updateBooks.getEdition());
-            }
-            if (updateBooks.getGenre() != null) {
-                existingBooks.setGenre(updateBooks.getGenre());
-            }
-            // DeweyIndex
-            // AuthorId
-            return _bookRepository.saveAndFlush(existingBooks);
+    public Books updateBook(String name, Books books) {
+        Optional<Books> oldBook = _bookRepository.findByNameEdit(name);
+        if(oldBook.isPresent() && !oldBook.get().getName().isBlank()) 
+        {
+            oldBook.get().setName(books.getName());
+            oldBook.get().setISBN10(books.getISBN10());
+            oldBook.get().setISBN13(books.getISBN13());
+            oldBook.get().setPublished(books.getPublished());
+            oldBook.get().setEdition(books.getEdition());
+            oldBook.get().setGenre(books.getGenre());
+            oldBook.get().setDeweyIndex(books.getDeweyIndex());
+
+            return _bookRepository.saveAndFlush(oldBook.get());
         } else {
-            return null; // Libro no encontrado
+            return null;
         }
     }
     
     // Crear Libro
     @Override
     public Books addBooks(Books books) {
-        var response = new Books();
-        response = _bookRepository.saveAndFlush(books);
-        return response;
-    }
 
+        Optional<Books> existingBook = _bookRepository.findByNameAdd(books.getName());
+        if (existingBook.isPresent()) {
+            throw new RuntimeException("El libro ya existe");
+        }
+        return _bookRepository.saveAndFlush(books);
+    }
 
     // Traer libros por Id del autor
     @Override
-    public Iterable<BooksByAuthor> getAllBooksByAuthorId(Integer idAuthor) {
-       Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+    public List<BooksByAuthor> getAllBooksByAuthorId(Integer idAuthor) {
+       List<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
        bookList = _BooksByAuthorRepository.findByAuthorId(idAuthor);
        return bookList;
     }
 
     // Traer libros por el nombre del autor
     @Override 
-    public Iterable<BooksByAuthor> getAllBooksByAuthorName(String nameAuthor) {
-        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+    public List<BooksByAuthor> getAllBooksByAuthorName(String nameAuthor) {
+        List<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
         bookList = _BooksByAuthorRepository.findByAuthorName(nameAuthor);
         return bookList;
     }
 
     // Traer libros por el nombre y/o apellido del autor
     @Override
-    public Iterable<BooksByAuthor> getAllBooksByAuthor(String nameAuthor, String lastNameAuthor) {
-        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+    public List<BooksByAuthor> getAllBooksByAuthor(String nameAuthor, String lastNameAuthor) {
+        List<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
 
         if (lastNameAuthor.length() > 0 && nameAuthor.length() <= 0) 
         {

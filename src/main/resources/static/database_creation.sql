@@ -45,3 +45,21 @@ CREATE TABLE Books
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 );
+
+-- Creacion de la tabla intermediaria de libros a libros
+
+CREATE TABLE BookByBook (
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Id_Book INT UNSIGNED NOT NULL,
+    Recommended_Id INT UNSIGNED NOT NULL,
+
+    CONSTRAINT fk_Book
+        FOREIGN KEY (Id_Book) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+
+    CONSTRAINT fk_Recommended
+        FOREIGN KEY (Recommended_Id) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+);
