@@ -29,34 +29,34 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Libros
 
 - [x] Crear un libro.
-- [ ] Editar un libro.
+- [x] Editar un libro.
 - [x] Buscar libro por nombre, de forma relativa.
 - [x] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
 - [x] Buscar libro por editorial.
 - [x] Buscar libro por género.
-- [ ] Buscar libro por fecha de publicación.
+- [x] Buscar libro por fecha de publicación.
 - [ ] Subir un libro en PDF a la biblioteca.
 - [ ] Servir un libro en PDF al cliente.
 - [ ] Agregar varios géneros a un libro.
 - [ ] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
 - [ ] Un libro puede tener varios temas.
-- [ ] No pueden haber dos versiones del mismo libro.
+- [x] No pueden haber dos versiones del mismo libro.
 - [ ] Agregar libros relacionados a un libro principal.
 
 ### Audiolibros
 
-- [ ] Crear un audiolibro.
+- [x] Crear un audiolibro.
 - [ ] Editar un audiolibro.
-- [ ] Buscar audiolibro por nombre, de forma relativa.
-- [ ] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
-- [ ] Buscar audiolibro por editorial.
-- [ ] Buscar audiolibro por género.
-- [ ] Buscar audiolibro por fecha de publicación.
+- [x] Buscar audiolibro por nombre, de forma relativa.
+- [x] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
+- [x] Buscar audiolibro por editorial.
+- [x] Buscar audiolibro por género.
+- [x] Buscar audiolibro por fecha de publicación.
 - [ ] Subir un audiolibro en MP3/OGG a la biblioteca.
 - [ ] Servir un audiolibro en MP3/OGG al cliente.
 - [ ] Buscar un audiolibro por narrador.
-- [ ] Buscar un audiolibro por longitud.
+- [x] Buscar un audiolibro por longitud.
 - [ ] Agregar varios géneros a un libro.
 - [ ] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
