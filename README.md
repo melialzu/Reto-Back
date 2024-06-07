@@ -29,7 +29,7 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Libros
 
 - [x] Crear un libro.
-- [ ] Editar un libro.
+- [x] Editar un libro.
 - [x] Buscar libro por nombre, de forma relativa.
 - [x] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
 - [x] Buscar libro por editorial.
