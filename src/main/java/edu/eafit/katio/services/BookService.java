@@ -21,41 +21,82 @@ public class BookService implements BaseBookService {
     _BooksByAuthorRepository = booksByAuthorRepository;
     }
 
+    // Traer todos los Libros
     @Override
     public Iterable<Books> getAllBooks() {
         var bookList = _bookRepository.findAll();
         return bookList;
     }
 
+    // Traer Libros por Id
     @Override
-    public Iterable<Books> getAllBooksByAuthor(int idAuthor) {
-       var booklist = _bookRepository.findByAuthorId(idAuthor);
-       return booklist;
+    public Iterable<Books> getBooksById(Integer Id) {
+        var bookList = _bookRepository.findById(Id);
+        return bookList;
     }
 
-    @Override
-    public Iterable<BooksByAuthor> getAllBooksByAuthor(String Name, String LastName) {
-        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
-
-        if (LastName.length() > 0 && Name.length() <= 0) 
-        {
-            bookList = _BooksByAuthorRepository.findByAuthorLastName(LastName);
-        }
-        else if (LastName.length() <= 0 && Name.length() > 0) 
-        {
-            bookList = _BooksByAuthorRepository.findByAuthorName(Name);
-        }
-        else 
-        {
-            bookList = _BooksByAuthorRepository.findByAuthorFullName(LastName, Name);
-        }
-        return bookList;
-    } 
-
+    // Traer Libros por Nombre
     @Override
     public Iterable<Books> getBooksByName(String Name) {
         var bookList = _bookRepository.findByName(Name);
         return bookList;
     }
 
+    //Traer Libros por Editorial
+    @Override
+    public Iterable<Books> getBooksByEdition(String Edition) {
+        var bookList = _bookRepository.findByEdition(Edition);
+        return bookList;
+    }
+
+    //Traer Libros por Genero
+    @Override
+    public Iterable<Books> getBooksByGenre(String Genre) {
+        var bookList = _bookRepository.findByGenre(Genre);
+        return bookList;
+    }
+
+    
+    // Crear Libro
+    @Override
+    public Books addBooks(Books books) {
+        var response = new Books();
+        response = _bookRepository.saveAndFlush(books);
+        return response;
+    }
+
+
+
+    @Override
+    public Iterable<BooksByAuthor> getAllBooksByAuthorId(Integer idAuthor) {
+       Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+       bookList = _BooksByAuthorRepository.findByAuthorId(idAuthor);
+       return bookList;
+    }
+
+    @Override 
+    public Iterable<BooksByAuthor> getAllBooksByAuthorName(String nameAuthor) {
+        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+        bookList = _BooksByAuthorRepository.findByAuthorName(nameAuthor);
+        return bookList;
+    }
+
+    @Override
+    public Iterable<BooksByAuthor> getAllBooksByAuthor(String nameAuthor, String lastNameAuthor) {
+        Iterable<BooksByAuthor> bookList = new ArrayList<BooksByAuthor>();
+
+        if (lastNameAuthor.length() > 0 && nameAuthor.length() <= 0) 
+        {
+            bookList = _BooksByAuthorRepository.findByAuthorLastName(lastNameAuthor);
+        }
+        else if (lastNameAuthor.length() <= 0 && nameAuthor.length() > 0) 
+        {
+            bookList = _BooksByAuthorRepository.findByAuthorName(nameAuthor);
+        }
+        else 
+        {
+            bookList = _BooksByAuthorRepository.findByAuthorFullName(lastNameAuthor, nameAuthor);
+        }
+        return bookList;
+    } 
 }

@@ -1,7 +1,5 @@
 package edu.eafit.katio.services;
 
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Formatter;
 import java.util.Optional;
@@ -22,7 +20,6 @@ public class UsuarioService implements BaseUsuarioService {
     @Override
     public Iterable<Usuarios> getAllUsuarios() {
         var listaUsuarios = usuarioRepository.findAll();
-
         return listaUsuarios;
     }
 
@@ -31,7 +28,7 @@ public class UsuarioService implements BaseUsuarioService {
         var usuarioCreado = new Usuarios();
 
         try {
-            if (usuarios.getPassword().length() > 15) {
+            if (usuarios.getPassword().length() > 5) {
 
                 String salt = GenerateSalt();
                 String password = hashPassword(usuarios.getPassword(), salt);
@@ -150,4 +147,36 @@ public class UsuarioService implements BaseUsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
-}
+    @Override
+    public Usuarios updateUsuarioByUsername(String username, Usuarios updatedUsuario) { // Metodo que recibe el username del usuario que se desea actualizar
+        Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(username); //Llama al método findByUsername del repositorio usuarioRepository para buscar un usuario con el nombre de usuario proporcionado.
+        if (optionalUsuario.isPresent()) { //Verifica si optionalUsuario contiene un valor (es decir, si el usuario fue encontrado).
+            Usuarios existingUsuario = optionalUsuario.get(); //Si el usuario existe, obtiene el usuario actual de optionalUsuario.
+            
+            if (updatedUsuario.getNombre() != null) {
+                existingUsuario.setNombre(updatedUsuario.getNombre()); //Actualiza cada campo del usuario existente con los valores del usuario actualizado (updatedUsuario).
+            }
+            if (updatedUsuario.getApellido() != null) {
+                existingUsuario.setApellido(updatedUsuario.getApellido());
+            }
+            if (updatedUsuario.getEmail() != null) {
+                existingUsuario.setEmail(updatedUsuario.getEmail());
+            }
+            if (updatedUsuario.getTelefono() != null) {
+                existingUsuario.setTelefono(updatedUsuario.getTelefono());
+            }
+            if (updatedUsuario.getIdentificacion() != null) {
+                existingUsuario.setIdentificacion(updatedUsuario.getIdentificacion());
+            }
+    
+            return usuarioRepository.saveAndFlush(existingUsuario); //Guarda los cambios en la base de datos usando el método saveAndFlush del repositorio usuarioRepository
+        } else {
+            return null; // Usuario no encontrado
+        }
+    }
+      
+    
+
+    
+  }
+   
