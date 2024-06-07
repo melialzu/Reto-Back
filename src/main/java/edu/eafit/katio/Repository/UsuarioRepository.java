@@ -1,8 +1,6 @@
-package edu.eafit.katio.repositories;
+package edu.eafit.katio.Repository;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,19 +14,10 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     @Query("SELECT u FROM Usuarios u WHERE u.Identificacion= ?1")
     List<Usuarios> findByIdentificacion(String Identificacion);
 
-    @Query("SELECT u FROM Usuarios u WHERE u.Email=?1")
-    Usuarios findByEmailAndPasswordList (String Email);
+    @Query("SELECT u FROM Usuarios u WHERE u.Email=?1 and u.Password =?1")
+    List<Usuarios> findByEmailAndPasswordList (String Email,String Password);
 
-    @Query("SELECT u FROM Usuarios u WHERE u.Email= ?1")
-    List<Usuarios> findByEmail(String Email);
-
-    @Query("SELECT u FROM Usuarios u WHERE u.Username= ?1")
-    Optional<Usuarios> findByUsername(String username);
-    
 
 
     Usuarios saveAndFlush(Usuarios usuarios);
-
-
-
 }
