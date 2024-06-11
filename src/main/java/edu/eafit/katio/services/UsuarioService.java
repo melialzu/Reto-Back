@@ -109,6 +109,27 @@ public class UsuarioService implements BaseUsuarioService {
         return usuarioRepository.findByEmail(email);
     }
 
+
+
+    @Override
+    public Usuarios updateUsuarioByUsername (Usuarios usuarios){
+        Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(usuarios.getUsername());
+     
+        if(optionalUsuario.isPresent() && !optionalUsuario.get().getEmail().isBlank())
+        {
+            optionalUsuario.get().setNombre(usuarios.getNombre());
+                optionalUsuario.get().setApellido(usuarios.getApellido());
+                optionalUsuario.get().setTelefono(usuarios.getTelefono());
+                optionalUsuario.get().setIdentificacion(usuarios.getIdentificacion());
+                //optionalUsuario.get().setRoleId(usuarios.getRoleId());
+
+            return usuarioRepository.saveAndFlush(optionalUsuario.get());
+        }
+        else{
+            return null;
+        }
+    }
+/*
     @Override
     public Usuarios updateUsuarioByUsername(String username, Usuarios updatedUsuario) { // Metodo que recibe el username del usuario que se desea actualizar
         Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(username); //Llama al método findByUsername del repositorio usuarioRepository para buscar un usuario con el nombre de usuario proporcionado.
@@ -135,8 +156,7 @@ public class UsuarioService implements BaseUsuarioService {
         } else {
             return null; // Usuario no encontrado
         }
-    }
-
+    }*/
 
     
 

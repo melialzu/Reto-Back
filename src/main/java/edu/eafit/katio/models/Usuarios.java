@@ -26,8 +26,8 @@ public class Usuarios{
     private String Password; // Password. 
       private String Username;
 
-    @Enumerated(EnumType.STRING) //indicar a JPA que los valores del enum deben almacenarse como cadenas en la base de datos.
-    private Roles Role;
+   // @Enumerated(EnumType.STRING) //indicar a JPA que los valores del enum deben almacenarse como cadenas en la base de datos.
+    /*private Roles Role;
   
 
 
@@ -39,7 +39,7 @@ public class Usuarios{
 
     public void setRole(Roles role) {
         Role = role;
-    }
+    }*/
  
 
     public String getUsername() {

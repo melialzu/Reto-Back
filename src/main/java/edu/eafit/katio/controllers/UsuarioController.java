@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -85,7 +84,7 @@ public class UsuarioController {
                 : new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.OK);
 
     }
-
+/* 
     @PutMapping("/update/{username}")
     public ResponseEntity<Object> updateUsuario(@PathVariable("username") String username, @RequestBody Usuarios updatedUsuario) {
         var usuarioService = new UsuarioService(usuarioRepository);
@@ -95,8 +94,15 @@ public class UsuarioController {
         } else {
             return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
         }
+    }*/
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUsuario(@RequestBody Usuarios usuarios){
+       var updatedUser = new UsuarioService(usuarioRepository).updateUsuarioByUsername(usuarios);  
+       return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
+   
 
-
+   
 
 }
