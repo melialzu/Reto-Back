@@ -33,20 +33,23 @@ public class AuthorService implements BaseAuthorService {
 
     // Buscar por id
     @Override
-    public Optional<Authors> getAuthorById(Long id) {
-        return _AuthorRepository.findById(id);
+    public List<Authors> getAuthorById(Integer id) {
+        var authorList =  _AuthorRepository.findById(id);
+        return authorList;
     }
 
     // Buscar por nombre
     @Override
-    public Iterable<Authors> getAuthorByName(String name) {
-        return _AuthorRepository.findByName(name);
+    public List<Authors> getAuthorByName(String name) {
+        var authorList = _AuthorRepository.findByName(name);
+        return authorList;
     }
 
     // Buscar por pais
     @Override
-    public Iterable<Authors> getAuthorByCountry(String country) {
-        return _AuthorRepository.findByCountry(country);
+    public List<Authors> getAuthorByCountry(String country) {
+        var authorList = _AuthorRepository.findByCountry(country);
+        return authorList;
     }
 
     // Traer autores por rango de fechas de nacimiento

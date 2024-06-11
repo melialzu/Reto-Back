@@ -12,11 +12,20 @@ import edu.eafit.katio.models.Authors;
 
 public interface AuthorRepository extends CrudRepository<Authors, Long> {
 
-    @Query("SELECT a FROM Authors a WHERE a.Name = :name")
-    Iterable<Authors> findByName(String name);
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * FROM Authors WHERE Id like %:id%")
+    List<Authors> findById(@Param("id") Integer id);
 
-    @Query("SELECT a FROM Authors a WHERE a.Country = :country")
-    Iterable<Authors> findByCountry(String country);
+    @Query(
+        nativeQuery = true, 
+        value = "SELECT * FROM Authors WHERE Name LIKE %:name%")
+    List<Authors> findByName(@Param("name") String name);
+
+    @Query(
+        nativeQuery = true,
+        value = "SELECT * FROM Authors WHERE Country LIKE %:country%")
+    List<Authors> findByCountry(String country);
     
     @Query(
         nativeQuery = true, 

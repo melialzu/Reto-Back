@@ -2,7 +2,6 @@ package edu.eafit.katio.controllers;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,27 +38,18 @@ public class AuthorsController {
         return new ResponseEntity<Iterable<Authors>>(authors, HttpStatus.OK);
     }
     
-    // Crear autor
-    @PostMapping("/add")
-    public ResponseEntity<Authors> addAuthors(@RequestBody Authors authors) {
-        try {
-            Authors createAuthor = new AuthorService(_authorRepository) .addAuthors(authors);
-            return new ResponseEntity<>(createAuthor, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
     // Buscar por id
     @GetMapping("/getById")
-    public ResponseEntity<Optional<Authors>> getAuthorById(@RequestParam("id") Long id) {
+    public ResponseEntity<Iterable<Authors>> getAuthorById(@RequestParam("id") Integer id) 
+    {
         var authorById = new AuthorService(_authorRepository).getAuthorById(id);
-        return new ResponseEntity<Optional<Authors>>(authorById, HttpStatus.OK);
+        return new ResponseEntity<Iterable<Authors>>(authorById, HttpStatus.OK);
     }
 
     // Buscar por nombre
     @GetMapping("/getByName")
-    public ResponseEntity<Iterable<Authors>> getAuthorByName(@RequestParam("name") String name) {
+    public ResponseEntity<Iterable<Authors>> getAuthorByName(@RequestParam("name") String name) 
+    {
         var authorByName = new AuthorService(_authorRepository).getAuthorByName(name);
         return new ResponseEntity<Iterable<Authors>>(authorByName, HttpStatus.OK);
     }
@@ -80,6 +70,16 @@ public class AuthorsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    // Crear autor
+    @PostMapping("/add")
+    public ResponseEntity<Authors> addAuthors(@RequestBody Authors authors) {
+        try {
+            Authors createAuthor = new AuthorService(_authorRepository) .addAuthors(authors);
+            return new ResponseEntity<>(createAuthor, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     // Editar autor
     @PutMapping("/update/{name}")
@@ -92,8 +92,9 @@ public class AuthorsController {
         }
     }
 
+    //Todo El dto no funciona
     // Metodos del Dto AudioBooksByAuthor
-        // Traer libros por Id del Autor
+    // Traer libros por Id del Autor
     @GetMapping("/getByAuthorId/{Id}")
     public ResponseEntity<Iterable<AudioBooksByAuthor>> getAllAudioBooksByAuthorId(@PathVariable("Id") Integer idAuthor)
     {
