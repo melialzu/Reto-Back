@@ -8,7 +8,6 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 - Melissa Alvarez
 - Felipe Alzate
-- Heidy 
 - Samir Gil
 
 # Entrega final de 15 de junio
@@ -66,9 +65,9 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Autores
 
 - [x] Crear un autor.
-- [ ] Editar un autor.
+- [x] Editar un autor.
 - [x] Buscar un autor por nombre y apellido de forma relativa.
-- [ ] Buscar un autor por fecha de nacimiento.
+- [x] Buscar un autor por fecha de nacimiento.
 - [x] Buscar un autor por país de procedencia.
 - [x] Buscar todos los libros de un autor por relación.
 - [ ] Buscar todos los audiolibros de un autor por relación.
