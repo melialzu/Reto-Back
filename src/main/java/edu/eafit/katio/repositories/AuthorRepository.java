@@ -1,5 +1,19 @@
 package edu.eafit.katio.repositories;
 
-public class AuthorRepository {
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import edu.eafit.katio.models.Authors;
+
+public interface AuthorRepository extends CrudRepository<Authors, Long> {
+
+    @Query("SELECT a FROM Authors a WHERE a.Name = :name")
+    Iterable<Authors> findByName(String name);
+
+    @Query("SELECT a FROM Authors a WHERE a.Country = :country")
+    Iterable<Authors> findByCountry(String country);
+
+ 
+
     
+   
 }

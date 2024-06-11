@@ -78,11 +78,31 @@ public class UsuarioController {
      */
 
     @PostMapping("/add")
-    public ResponseEntity<Usuarios> addUsurios(@RequestBody Usuarios usuarios) {
+    public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios) {
         var usuarioCreado = new UsuarioService(usuarioRepository).addUsuarios(usuarios);
         return usuarioCreado.getId() == 0 ? new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.BAD_REQUEST)
                 : new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.OK);
 
     }
+/* 
+    @PutMapping("/update/{username}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable("username") String username, @RequestBody Usuarios updatedUsuario) {
+        var usuarioService = new UsuarioService(usuarioRepository);
+        Usuarios usuarioActualizado = usuarioService.updateUsuarioByUsername(username, updatedUsuario);
+        if (usuarioActualizado != null) {
+            return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+        }
+    }*/
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUsuario(@RequestBody Usuarios usuarios){
+       var updatedUser = new UsuarioService(usuarioRepository).updateUsuarioByUsername(usuarios);  
+       return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+   
+
+   
 
 }

@@ -12,9 +12,15 @@ CREATE TABLE usuarios
     Apellido VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Telefono VARCHAR(20) NOT NULL,
+<<<<<<< HEAD
     Identification VARCHAR(20) NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Salt VARCHAR(500) NOT NULL,
+=======
+    Identificacion VARCHAR(20) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Username VARCHAR (255) NOT NULL,
+>>>>>>> 96eb3356fafdefb1396bdc75c7c2b2feaf8d94c9
     INDEX email_idx(Email)
 );
 
@@ -44,3 +50,48 @@ CREATE TABLE Books
         ON DELETE CASCADE
         ON UPDATE RESTRICT
 );
+
+CREATE TABLE Audiobooks
+(
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name NVARCHAR(255) NOT NULL,
+    ISBN10 NVARCHAR(255) NOT NULL,
+    ISBN13 NVARCHAR(255) NOT NULL,
+    Published DATE NOT NULL,
+    Edition NVARCHAR(255) NOT NULL,
+    Genre NVARCHAR(255) NOT NULL,
+    Abridged BIT NOT NULL,
+    Length_in_seconds INT UNSIGNED NOT NULL,
+    Path NVARCHAR(255) NOT NULL,
+    Author_Id INT UNSIGNED NOT NULL,
+    CONSTRAINT `fk_audiobooks_author`
+        FOREIGN KEY (Author_Id) REFERENCES Authors(Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+);
+
+CREATE TABLE Narrator 
+(
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Name NVARCHAR(255) NOT NULL,
+    LastName NVARCHAR(255) NOT NULL,
+    Genre NVARCHAR(255) NOT NULL,
+    Languajes NVARCHAR(255) NOT NULL,
+);
+
+-- Creacion de la tabla intermediaria de libros a libros
+
+CREATE TABLE BookByBook (
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Id_Book INT UNSIGNED NOT NULL,
+    Recommended_Id INT UNSIGNED NOT NULL,
+
+    CONSTRAINT fk_Book
+        FOREIGN KEY (Id_Book) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+
+    CONSTRAINT fk_Recommended
+        FOREIGN KEY (Recommended_Id) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
