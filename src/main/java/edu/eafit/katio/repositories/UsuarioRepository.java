@@ -29,6 +29,8 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
 
     Usuarios saveAndFlush(Usuarios usuarios);
 
+    
+
 
 
 }
