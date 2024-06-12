@@ -29,7 +29,7 @@ public class Usuarios implements UserDetails{
     private String Telefono;
     private String Identificacion;
     private String Password; // Password. 
-    private String Username;
+      private String Username;
 
    // @Enumerated(EnumType.STRING) //indicar a JPA que los valores del enum deben almacenarse como cadenas en la base de datos.
     /*private Roles Role;
@@ -44,7 +44,7 @@ public class Usuarios implements UserDetails{
 
     public void setRole(Roles role) {
         Role = role;
-    }*/  
+    }
  
 
     public String getUsername() {
@@ -52,7 +52,7 @@ public class Usuarios implements UserDetails{
     }
     public void setUsername(String username) {
         Username = username;
-    }
+    }*/   
     public Integer getId() {
         return Id;
     }
@@ -112,12 +112,12 @@ public class Usuarios implements UserDetails{
    /*  @Override
     public String getPassword() {
         return Password;
-    }x
+    }*/
    
     @Override
     public String getUsername() {
         return Email;
-    }*/
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;
