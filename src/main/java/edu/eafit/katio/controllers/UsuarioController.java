@@ -77,16 +77,36 @@ public class UsuarioController {
 
     }
 
-   
+    /*
+     * @GetMapping("/loguin")
+     * public ResponseEntity<Iterable<Usuarios>> getbyLoguin(@RequestBody String
+     * email){
+     * var usuarioByEmail = new
+     * UsuarioService(usuarioRepository).getUsuarioByEmail(email);
+     * return new ResponseEntity<Iterable<Usuarios>>(usuarioByEmail,HttpStatus.OK);
+     * }
+     * 
+     */
 
-   /*  @PostMapping("/add")
-    public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios) {    
+    @PostMapping("/add")
+    public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios) {
+    
         var usuarioCreado = new UsuarioService(usuarioRepository).addUsuarios(usuarios);
         return usuarioCreado.getId() == 0 ? new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.BAD_REQUEST)
                 : new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.OK);
 
+    }
+/* 
+    @PutMapping("/update/{username}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable("username") String username, @RequestBody Usuarios updatedUsuario) {
+        var usuarioService = new UsuarioService(usuarioRepository);
+        Usuarios usuarioActualizado = usuarioService.updateUsuarioByUsername(username, updatedUsuario);
+        if (usuarioActualizado != null) {
+            return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+        }
     }*/
-
 
     @PutMapping("/update")
     public ResponseEntity<?> updateUsuario(@RequestBody Usuarios usuarios){
