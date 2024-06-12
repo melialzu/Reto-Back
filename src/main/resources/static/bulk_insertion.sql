@@ -54,3 +54,25 @@ CREATE TABLE AudioBooks_Genre
   	ON DELETE CASCADE
   	ON UPDATE RESTRICT
   )
+
+   INSERT INTO Genre (Id, Name) VALUES
+  (0, 'Fantasia Epica'),
+  (0, 'Horror Gótico'),
+  (0, 'Ciencia Ficción'),
+  (0, 'Realismo Mágico'),
+  (0, 'Crónica'),
+  (0, 'Romancticismo');
+
+   INSERT INTO AudioBooks_Genre (audiobook_id, genre_id) VALUES 
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4)
+
+    INSERT INTO AudioBooks_Authors (audiobook_id, author_id) VALUES 
+	(9, 1),
+    (9, 2),
+    (9, 3),
+    (9, 4),
+    (9, 9),
+    (9, 10)
