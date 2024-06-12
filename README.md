@@ -8,7 +8,6 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 - Melissa Alvarez
 - Felipe Alzate
-- Heidy 
 - Samir Gil
 
 # Entrega final de 15 de junio
@@ -19,46 +18,46 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 - [x] Crear un usuario, utilizar el registro.
 - [ ] Login del usuario: debe regresar un token bearer. Al hacer login, debo poder usar el token para cualquier otra acción.
 - [ ] Todas mis acciones deben quedar bajo llave, con la sola excepción de: Login, Signup.
-- [ ] Editar un usuario.
+- [x] Editar un usuario.
 - [ ] Debo poder reiniciar mi clave, solo mi clave. Debo colocar la clave anterior, y dos veces la clave nueva.
 - [x] Listar todos mis usuarios.
 - [x] Listar todos mis usuarios por email, o identificación.
-- [ ] Agregar un username. No todos los usuarios tienen un correo hábil. Ambos campos son distintos, pero puede repetir la información.
+- [x] Agregar un username. No todos los usuarios tienen un correo hábil. Ambos campos son distintos, pero puede repetir la información.
 - [ ] Manejar los perfiles (Roles) del usuario.
 
 ### Libros
 
 - [x] Crear un libro.
-- [ ] Editar un libro.
+- [x] Editar un libro.
 - [x] Buscar libro por nombre, de forma relativa.
 - [x] Buscar libro por autor, de forma relativa, por nombre y apellido del autor.
 - [x] Buscar libro por editorial.
 - [x] Buscar libro por género.
-- [ ] Buscar libro por fecha de publicación.
+- [x] Buscar libro por fecha de publicación.
 - [ ] Subir un libro en PDF a la biblioteca.
 - [ ] Servir un libro en PDF al cliente.
 - [ ] Agregar varios géneros a un libro.
 - [ ] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
 - [ ] Un libro puede tener varios temas.
-- [ ] No pueden haber dos versiones del mismo libro.
+- [x] No pueden haber dos versiones del mismo libro.
 - [ ] Agregar libros relacionados a un libro principal.
 
 ### Audiolibros
 
-- [ ] Crear un audiolibro.
-- [ ] Editar un audiolibro.
-- [ ] Buscar audiolibro por nombre, de forma relativa.
-- [ ] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
-- [ ] Buscar audiolibro por editorial.
-- [ ] Buscar audiolibro por género.
-- [ ] Buscar audiolibro por fecha de publicación.
+- [x] Crear un audiolibro.
+- [x] Editar un audiolibro.
+- [x] Buscar audiolibro por nombre, de forma relativa.
+- [x] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
+- [x] Buscar audiolibro por editorial.
+- [x] Buscar audiolibro por género.
+- [x] Buscar audiolibro por fecha de publicación.
 - [ ] Subir un audiolibro en MP3/OGG a la biblioteca.
 - [ ] Servir un audiolibro en MP3/OGG al cliente.
 - [ ] Buscar un audiolibro por narrador.
-- [ ] Buscar un audiolibro por longitud.
-- [ ] Agregar varios géneros a un libro.
-- [ ] Los libros pueden tener varios autores.
+- [x] Buscar un audiolibro por longitud.
+- [x] Agregar varios géneros a un libro.
+- [x] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
 - [ ] Un libro puede tener varios temas.
 - [ ] No pueden haber dos versiones del mismo libro.
@@ -66,9 +65,9 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Autores
 
 - [x] Crear un autor.
-- [ ] Editar un autor.
+- [x] Editar un autor.
 - [x] Buscar un autor por nombre y apellido de forma relativa.
-- [ ] Buscar un autor por fecha de nacimiento.
+- [x] Buscar un autor por fecha de nacimiento.
 - [x] Buscar un autor por país de procedencia.
 - [x] Buscar todos los libros de un autor por relación.
 - [ ] Buscar todos los audiolibros de un autor por relación.
@@ -92,15 +91,17 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Admin / Estadísticas
 
-- [ ] Ver mis usuarios, editarlos y desactivarlos.
-- [ ] Asignar una clave de forma directa a un usuario a través de la edición.
-- [ ] El username y el email no son mutables.
+- [ ] Ver mis usuarios, editarlos y desactivarlos. (Meli)
+- [ ] Asignar una clave de forma directa a un usuario a través de la edición. (Meli)
+- [ ] El username y el email no son mutables. (Meli)
+*********
 - [ ] Agregar estadísticas al sitio.
 - [ ] Cada vez que se descargue un libro, tener un contador que se encargue de llevar la cuenta.
 - [ ] Cada vez que se reproduzca un audiolibro, tener un contador que se encargue de llevar la cuenta.
-- [ ] Cada vez que se mire el perfil de un autor con sus libros, tener un contador que se encargue de llevar la cuenta.
+- [ ] Cada vez que se mire el perfil de un autor con sus libros, tener un contador que se encargue de llevar la cuenta. (Sam cada vez que se llame el servicio autor por nombre-apellido )
 - [ ] Cada vez que se descargue un libro o se escuche un audiolibro, marcar el género en una tabla de contadores que lleve la cuenta.
-- [ ] Última conexión al usuario.
+
+- [ ] Última conexión al usuario. (meli)
 - [ ] Llevar la cuenta de cuántos días distintos se conecta un usuario. Diferente a la última conexión.
 - [ ] Agregar logs al sistema.
 - [ ] Basada en las conexiones y la cuenta de las mismas, emitir una estadística que diga cuáles son los días más activos para el sistema.

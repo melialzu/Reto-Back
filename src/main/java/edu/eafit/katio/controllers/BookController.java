@@ -1,16 +1,20 @@
 package edu.eafit.katio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
+import java.util.List;
 
 import edu.eafit.katio.dtos.BooksByAuthor;
 import edu.eafit.katio.models.Books;
@@ -32,58 +36,77 @@ public class BookController {
 
 
     //Metodos de model Book
+
+    // Crear un Libro
+    @PostMapping("/add")
+    public ResponseEntity<Books> addBooks(@RequestBody Books books) {
+        try {
+            Books creatBook = new BookService(_bookRepository) .addBooks(books);
+            return new ResponseEntity<>(creatBook, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // Editar un libro
+    @PutMapping("/update/{name}")
+    public ResponseEntity<Object> updateBooks(@PathVariable("name") String name, @RequestBody Books updateBooks) {
+        Books updatedBook = new BookService(_bookRepository) .updateBook(name, updateBooks);
+        if (updatedBook != null) {
+            return new ResponseEntity<>(updatedBook, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Libro no Encontrado", HttpStatus.NOT_FOUND);
+        }
+    }
+
     // Traer Todos los Libros
     @GetMapping("/getall")
-    public ResponseEntity<Iterable<Books>> getAllBooks() {
+    public ResponseEntity<Iterable<Books>> getAllBooks() 
+    {
         var books = new BookService(_bookRepository) .getAllBooks();
         return new ResponseEntity<Iterable<Books>>(books, HttpStatus.OK);
     }
 
     // Traer Libros por Id del Libro
-    @GetMapping("/getById")
-    public ResponseEntity<Iterable<Books>> getBooksById(@RequestParam ("Id") Integer Id)
+    @GetMapping("/getById/{Id}")
+    public ResponseEntity<Iterable<Books>> getBooksById(@PathVariable ("Id") Integer Id)
     {
         var response = new BookService(_bookRepository).getBooksById(Id);
         return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
     }
 
     // Traer Libros por Nombre del Libro
-    @GetMapping("/getByName")
-    public ResponseEntity<Iterable<Books>> getBookByName(@RequestParam ("Name") String Name)
+    @GetMapping("/getByName/{Name}")
+    public ResponseEntity<Iterable<Books>> getBookByName(@PathVariable ("Name") String Name)
     {
         var response = new BookService(_bookRepository).getBooksByName(Name);
         return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
     }
 
     // Traer Libros por Editorial
-    @GetMapping("/getByEdition")
-    public ResponseEntity<Iterable<Books>> getBooksByEdition(@RequestParam ("Edition") String Edition)
+    @GetMapping("/getByEdition/{Edition}")
+    public ResponseEntity<Iterable<Books>> getBooksByEdition(@PathVariable ("Edition") String Edition)
     {
         var response = new BookService(_bookRepository).getBooksByEdition(Edition);
         return new ResponseEntity<Iterable<Books>>(response, HttpStatus.OK);
     }
 
     // Traer Libros por Genero
-    @GetMapping("/getByGenre")
-    public ResponseEntity<Iterable<Books>> getBooksByGenre(@RequestParam ("Genre") String Genre)
+    @GetMapping("/getByGenre/{Genre}")
+    public ResponseEntity<Iterable<Books>> getBooksByGenre(@PathVariable ("Genre") String Genre)
     {
         var response = new BookService(_bookRepository).getBooksByGenre(Genre);
         return new ResponseEntity<Iterable<Books>> (response, HttpStatus.OK);
     }
 
-    // Traer libro por fecha de publicacion
-    
-
-
-    // Crear un Libro
-    @PostMapping("/add")
-    public ResponseEntity<Books> addBooks(@RequestBody Books books) 
-    {
-        var response = new BookService(_bookRepository).addBooks(books);
-        return response.getId() == 0 ? new ResponseEntity<Books>(response, HttpStatus.BAD_REQUEST)
-                : new ResponseEntity<Books>(response, HttpStatus.OK);
+    // Traer libros por rango de fechas de publicación
+    @GetMapping("/getByDate/{startDate}/{endDate}")
+    public ResponseEntity<List<Books>> getBooksByDate(
+            @PathVariable("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @PathVariable("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        var response = new BookService(_bookRepository).getBooksByDateRange(startDate, endDate);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 
     // Metodos del Dto BooksByAuthor
     // Traer libros por Id del Autor

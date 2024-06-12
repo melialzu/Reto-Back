@@ -17,7 +17,6 @@ public class AuthorService implements BaseAuthorService {
 
     @Override
     public Authors addAuthors(Authors authors) {
-        //var authorCreado = new Authors();
         return _AuthorRepository.save(authors);
         
     }
