@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.eafit.katio.dtos.AudioBooksDTO;
 import edu.eafit.katio.models.AudioBooks;
 import edu.eafit.katio.repositories.AudioBooksRepository;
+import edu.eafit.katio.repositories.AudioBooks_AuthorsRepository;
+import edu.eafit.katio.repositories.AudioBooks_GenreRepository;
 import edu.eafit.katio.services.AudioBookService;
 
 @RestController
@@ -24,6 +27,12 @@ public class AudioBooksController {
 
     @Autowired
     private AudioBooksRepository _AudioBooksRepository;
+
+    @Autowired
+    private AudioBooks_AuthorsRepository _AudioBooks_AuthorsRepository;
+
+    @Autowired
+    private AudioBooks_GenreRepository _AudioBooks_GenreRepository;
     
     @GetMapping ("/getall")
     public ResponseEntity<Iterable<AudioBooks>> getallAudioBooks() 
@@ -54,22 +63,30 @@ public class AudioBooksController {
     }
 
     @PostMapping ("/addaudiobooks")
-    public ResponseEntity<AudioBooks> addAudioBooks(@RequestBody AudioBooks audioBooks)
+    public ResponseEntity<AudioBooks> addAudioBooks(@RequestBody AudioBooksDTO audioBooks)
     {
-        var response = new AudioBookService(_AudioBooksRepository).createAudioBooks(audioBooks);
+        var response = new AudioBookService(_AudioBooksRepository, _AudioBooks_AuthorsRepository, _AudioBooks_GenreRepository).createAudioBooks(audioBooks);
+        return response.getId() == 0 ? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
+        : new ResponseEntity<AudioBooks>(response, HttpStatus.OK);
+    }
+
+    @PostMapping ("/update-audiobooks")
+    public ResponseEntity<AudioBooks> updateAudioBooks(@RequestBody AudioBooksDTO audioBooks)
+    {
+        var response = new AudioBookService(_AudioBooksRepository, _AudioBooks_AuthorsRepository, _AudioBooks_GenreRepository).createAudioBooks(audioBooks);
         return response.getId() == 0 ? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
         : new ResponseEntity<AudioBooks>(response, HttpStatus.OK);
     }
 
     @GetMapping("/getByAuthor")
-    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByAuthor(@RequestParam("author") String author)
+    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByAuthor(@RequestParam("authorId") String author)
     {
         var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByAuthor(author);
         return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);
     }
 
     @GetMapping("/getByGenre")
-    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByGenre(@RequestParam("genre") String genre)
+    public ResponseEntity<Iterable<AudioBooks>> getAudioBooksByGenre(@RequestParam("genreId") String genre)
     {
         var audiobooks = new AudioBookService(_AudioBooksRepository).findAudioBooksByGenre(genre);
         return new ResponseEntity<Iterable<AudioBooks>>(audiobooks, HttpStatus.OK);

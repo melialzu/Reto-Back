@@ -72,3 +72,17 @@ CREATE TABLE Narrator
     Genre NVARCHAR(255) NOT NULL,
     Languajes NVARCHAR(255) NOT NULL,
 );
+
+CREATE TABLE AudioBooks_Authors 
+(
+  audiobook_id INT UNSIGNED NOT NULL,
+  author_id INT UNSIGNED NOT NULL,
+  CONSTRAINT `fk_audiobooks_id`
+  	FOREIGN KEY (audiobook_id) REFERENCES Audiobooks (Id)
+  	ON DELETE CASCADE 
+  	ON UPDATE RESTRICT,
+  CONSTRAINT `fk_authors_id`
+  	FOREIGN KEY (author_id) REFERENCES Authors (ID)
+  	ON DELETE CASCADE
+  	ON UPDATE RESTRICT 
+)

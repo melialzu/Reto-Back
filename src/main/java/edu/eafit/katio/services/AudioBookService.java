@@ -2,16 +2,35 @@ package edu.eafit.katio.services;
 
 import java.sql.Date;
 
+import edu.eafit.katio.dtos.AudioBooksDTO;
 import edu.eafit.katio.interfaces.BaseAudioBookServices;
 import edu.eafit.katio.models.AudioBooks;
+import edu.eafit.katio.models.AudioBooks_Authors;
+import edu.eafit.katio.models.AudioBooks_Genre;
 import edu.eafit.katio.repositories.AudioBooksRepository;
+import edu.eafit.katio.repositories.AudioBooks_AuthorsRepository;
+import edu.eafit.katio.repositories.AudioBooks_GenreRepository;
 
 public class AudioBookService implements BaseAudioBookServices{
 
     private final AudioBooksRepository _AudioBooksRepository;
 
+    private final AudioBooks_AuthorsRepository _AudioBooks_AuthorsRepository;
+
+    private final AudioBooks_GenreRepository _AudioBooks_GenreRepository;
+
     public AudioBookService(AudioBooksRepository audioBooksRepository){
         _AudioBooksRepository = audioBooksRepository;
+        this._AudioBooks_AuthorsRepository = null;
+        this._AudioBooks_GenreRepository = null;
+    }
+
+    public AudioBookService(AudioBooksRepository _AudioBooksRepository,
+            AudioBooks_AuthorsRepository _AudioBooks_AuthorsRepository,
+            AudioBooks_GenreRepository _AudioBooks_GenreRepository) {
+        this._AudioBooksRepository = _AudioBooksRepository;
+        this._AudioBooks_AuthorsRepository = _AudioBooks_AuthorsRepository;
+        this._AudioBooks_GenreRepository = _AudioBooks_GenreRepository;
     }
 
     @Override
@@ -52,8 +71,13 @@ public class AudioBookService implements BaseAudioBookServices{
     }
     
     //Hacer la validacion para ver si ya existe el audiolibro
-    public AudioBooks createAudioBooks(AudioBooks audioBooks) {
-        var audioBook = _AudioBooksRepository.save(audioBooks);
+    public AudioBooks createAudioBooks(AudioBooksDTO audioBooks) {
+        var audioBook = _AudioBooksRepository.save(new AudioBooks(audioBooks.getId(), audioBooks.getName(), audioBooks.getISBN10(), audioBooks.getISBN13(),
+            audioBooks.getPublished(), audioBooks.getEdition(), audioBooks.getAbridged(), audioBooks.getLengthInSeconds(), audioBooks.getPath()));
+
+        audioBooks.getAuthors().forEach((authorId) -> _AudioBooks_AuthorsRepository.save(new AudioBooks_Authors(audioBook.getId(), authorId)));
+        audioBooks.getGenres().forEach((genreId) -> _AudioBooks_GenreRepository.save(new AudioBooks_Genre(audioBook.getId(), genreId)));
+         
         return audioBook;
     }
 }
