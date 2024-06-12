@@ -8,7 +8,6 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 - Melissa Alvarez
 - Felipe Alzate
-- Heidy 
 - Samir Gil
 
 # Entrega final de 15 de junio
@@ -47,7 +46,7 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Audiolibros
 
 - [x] Crear un audiolibro.
-- [ ] Editar un audiolibro.
+- [x] Editar un audiolibro.
 - [x] Buscar audiolibro por nombre, de forma relativa.
 - [x] Buscar audiolibro por autor, de forma relativa, por nombre y apellido del autor.
 - [x] Buscar audiolibro por editorial.
@@ -57,8 +56,8 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 - [ ] Servir un audiolibro en MP3/OGG al cliente.
 - [ ] Buscar un audiolibro por narrador.
 - [x] Buscar un audiolibro por longitud.
-- [ ] Agregar varios géneros a un libro.
-- [ ] Los libros pueden tener varios autores.
+- [x] Agregar varios géneros a un libro.
+- [x] Los libros pueden tener varios autores.
 - [ ] Agregar temas al libro.
 - [ ] Un libro puede tener varios temas.
 - [ ] No pueden haber dos versiones del mismo libro.
@@ -66,9 +65,9 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Autores
 
 - [x] Crear un autor.
-- [ ] Editar un autor.
+- [x] Editar un autor.
 - [x] Buscar un autor por nombre y apellido de forma relativa.
-- [ ] Buscar un autor por fecha de nacimiento.
+- [x] Buscar un autor por fecha de nacimiento.
 - [x] Buscar un autor por país de procedencia.
 - [x] Buscar todos los libros de un autor por relación.
 - [ ] Buscar todos los audiolibros de un autor por relación.
