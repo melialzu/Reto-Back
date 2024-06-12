@@ -74,10 +74,10 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Narradores
 
-- [ ] Crear un narrador.
-- [ ] Editar un narrador.
-- [ ] Buscar narrador por nombre.
-- [ ] Buscar narrador por perfil de voz.
+- [x] Crear un narrador.
+- [x] Editar un narrador.
+- [x] Buscar narrador por nombre.
+- [x] Buscar narrador por perfil de voz.
 - [ ] Buscar libros narrados por el narrador por relación.
 
 ### Utils
