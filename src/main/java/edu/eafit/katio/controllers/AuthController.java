@@ -1,6 +1,7 @@
 package edu.eafit.katio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import edu.eafit.katio.dtos.LoginResponse;
 import edu.eafit.katio.dtos.LoginUser;
 import edu.eafit.katio.models.Usuarios;
 import edu.eafit.katio.repositories.UsuarioRepository;
+
 import edu.eafit.katio.services.AuthenticationService;
 import edu.eafit.katio.services.JwtService;
 
@@ -33,10 +35,13 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Usuarios> register(@RequestBody Usuarios registerUserDto) {
+    public ResponseEntity<?> register(@RequestBody Usuarios registerUserDto) {
+        try {
         Usuarios registeredUser = _authService.signup(registerUserDto);
-
         return ResponseEntity.ok(registeredUser);
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    }
     }
 
     @PostMapping("/signin")

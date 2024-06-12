@@ -21,7 +21,7 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     Usuarios findByEmailAndPasswordList (String Email);
 
     @Query("SELECT u FROM Usuarios u WHERE u.Email= ?1")
-    List<Usuarios> findByEmail(String Email);
+    Optional<Usuarios> findByEmail(String Email);
 
    /*  @Query("SELECT u FROM Usuarios u WHERE u.Username= ?1")
     Optional<Usuarios> findByUsername(String username);*/
@@ -31,6 +31,8 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     Optional<Usuarios> findByUsername(String username);
 
     Usuarios saveAndFlush(Usuarios usuarios);
+
+  
 
     
 

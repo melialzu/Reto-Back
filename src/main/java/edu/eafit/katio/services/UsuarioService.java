@@ -105,10 +105,10 @@ public class UsuarioService implements BaseUsuarioService {
     }
 
     @Override
-    public Iterable<Usuarios> getUsuarioByEmail(String email) {
+    public Optional<Usuarios> getUsuarioByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
-
+   
 
 
     @Override
