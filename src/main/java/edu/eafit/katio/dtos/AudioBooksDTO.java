@@ -13,8 +13,8 @@ public class AudioBooksDTO {
     private Boolean Abridged;
     private Long lengthInSeconds;
     private String Path;
-    private List<Integer> authors;
-    private List<Integer> genres;
+    private List<Long> authors;
+    private List<Long> genres;
 
     public long getId() {
         return Id;
@@ -88,19 +88,19 @@ public class AudioBooksDTO {
         Path = path;
     }
 
-    public List<Integer> getAuthors() {
+    public List<Long> getAuthors() {
         return authors;
     }
     
-    public void setAuthors(List<Integer> authors) {
+    public void setAuthors(List<Long> authors) {
         this.authors = authors;
     }
 
-    public List<Integer> getGenres() {
+    public List<Long> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Integer> genres) {
+    public void setGenres(List<Long> genres) {
         this.genres = genres;
     }
     

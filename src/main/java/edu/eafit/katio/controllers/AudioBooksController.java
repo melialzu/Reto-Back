@@ -66,7 +66,7 @@ public class AudioBooksController {
     public ResponseEntity<AudioBooks> addAudioBooks(@RequestBody AudioBooksDTO audioBooks)
     {
         var response = new AudioBookService(_AudioBooksRepository, _AudioBooks_AuthorsRepository, _AudioBooks_GenreRepository).createAudioBooks(audioBooks);
-        return response.getId() == 0 ? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
+        return response == null || response.getId() == 0? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
         : new ResponseEntity<AudioBooks>(response, HttpStatus.OK);
     }
 

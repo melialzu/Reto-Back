@@ -1,6 +1,9 @@
 package edu.eafit.katio.services;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import edu.eafit.katio.dtos.AudioBooksDTO;
 import edu.eafit.katio.interfaces.BaseAudioBookServices;
@@ -72,12 +75,30 @@ public class AudioBookService implements BaseAudioBookServices{
     
     //Hacer la validacion para ver si ya existe el audiolibro
     public AudioBooks createAudioBooks(AudioBooksDTO audioBooks) {
-        var audioBook = _AudioBooksRepository.save(new AudioBooks(audioBooks.getId(), audioBooks.getName(), audioBooks.getISBN10(), audioBooks.getISBN13(),
+
+        AudioBooks savedAudioBook = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName()).iterator().next();
+
+        Iterable<Long> ids = _AudioBooks_AuthorsRepository.findByAudioBook(savedAudioBook.getId());
+
+        List<Long> authorsIds = StreamSupport
+            .stream(_AudioBooks_AuthorsRepository.findByAudioBook(savedAudioBook.getId()).spliterator(), false)
+            .collect(Collectors.toList());
+
+        Boolean exist = authorsIds.stream().anyMatch(element -> audioBooks.getAuthors().contains(element));
+
+        if(exist){
+            return null;
+        } else {
+
+            var audioBook = _AudioBooksRepository.save(new AudioBooks(audioBooks.getId(), audioBooks.getName(), audioBooks.getISBN10(), audioBooks.getISBN13(),
             audioBooks.getPublished(), audioBooks.getEdition(), audioBooks.getAbridged(), audioBooks.getLengthInSeconds(), audioBooks.getPath()));
 
-        audioBooks.getAuthors().forEach((authorId) -> _AudioBooks_AuthorsRepository.save(new AudioBooks_Authors(audioBook.getId(), authorId)));
-        audioBooks.getGenres().forEach((genreId) -> _AudioBooks_GenreRepository.save(new AudioBooks_Genre(audioBook.getId(), genreId)));
+            audioBooks.getAuthors().forEach((authorId) -> _AudioBooks_AuthorsRepository.save(new AudioBooks_Authors(audioBook.getId(), authorId)));
+            audioBooks.getGenres().forEach((genreId) -> _AudioBooks_GenreRepository.save(new AudioBooks_Genre(audioBook.getId(), genreId)));
          
-        return audioBook;
+            return audioBook;
+
+        }
+        
     }
 }

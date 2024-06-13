@@ -13,7 +13,7 @@ public class AudioBooks_Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     private long audiobook_id;
-    private Integer genre_id;
+    private long genre_id;
 
     //Getters and Setters 
 
@@ -29,7 +29,7 @@ public class AudioBooks_Genre {
         this.audiobook_id = audiobook_id;
     }
 
-    public AudioBooks_Genre(long audiobook_id, Integer genre_id) {
+    public AudioBooks_Genre(long audiobook_id, long genre_id) {
         this.audiobook_id = audiobook_id;
         this.genre_id = genre_id;
     }
@@ -45,11 +45,11 @@ public class AudioBooks_Genre {
         this.audiobook_id = audiobook_id;
     }
 
-    public Integer getGenre_id() {
+    public long getGenre_id() {
         return genre_id;
     }
 
-    public void setGenre_id(Integer genre_id) {
+    public void setGenre_id(long genre_id) {
         this.genre_id = genre_id;
     }
     

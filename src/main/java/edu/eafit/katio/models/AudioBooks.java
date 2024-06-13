@@ -30,15 +30,15 @@ public class AudioBooks {
     //private Long AuthorId;
     //private Languajes Languajes; // Enumeracion con el lenguaje del libro //Se quita Languajes porque se hace un cotrolador
 
+    public AudioBooks() {
+    }
     
-
     public String getTimeNotation(){
        
         
         var horas = this.LengthInSeconds / 3600;
         return "Duracion: " + horas;
     }
-
     
     // Getters and Setters
 
