@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import edu.eafit.katio.models.Usuarios;
 
@@ -22,7 +23,17 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     @Query("SELECT u FROM Usuarios u WHERE u.Email= ?1")
     List<Usuarios> findByEmail(String Email);
 
+   /*  @Query("SELECT u FROM Usuarios u WHERE u.Username= ?1")
+    Optional<Usuarios> findByUsername(String username);*/
+    
 
+    @Query(nativeQuery = true, value = "SELECT * FROM Usuarios where Email = :username")
+    Optional<Usuarios> findByUsername(String username);
 
     Usuarios saveAndFlush(Usuarios usuarios);
+
+    
+
+
+
 }

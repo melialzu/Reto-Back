@@ -1,58 +1,56 @@
 package edu.eafit.katio.models;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "narrators")
+public class Narrators {
 
-    @Entity
-@Table(name="Authors")
-public class Authors {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Integer Id;
     private String Name;
     private String Lastname;
-    private String Country;
-    private Date Birthdate;
-    
-    
-    public long getId() {
+    private String Genre;
+
+
+    // Getters and Setters
+    public Integer getId() {
         return Id;
     }
-    public void setId(long id) {
+
+    public void setId(Integer id) {
         Id = id;
     }
+
     public String getName() {
         return Name;
     }
+
     public void setName(String name) {
         Name = name;
     }
+
     public String getLastname() {
         return Lastname;
     }
+
     public void setLastname(String lastname) {
         Lastname = lastname;
     }
-    public String getCountry() {
-        return Country;
+
+    public String getGenre() {
+        return Genre;
     }
-    public void setCountry(String country) {
-        Country = country;
+
+    public void setGenre(String genre) {
+        Genre = genre;
     }
-    public Date getBirthdate() {
-        return Birthdate;
-    }
-    public void setBirthdate(Date birthdate) {
-        Birthdate = birthdate;
-    }
+
+    // Getters and Setters
     
 }
- 
-
