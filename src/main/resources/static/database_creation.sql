@@ -12,9 +12,9 @@ CREATE TABLE usuarios
     Apellido VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Telefono VARCHAR(20) NOT NULL,
-    Identification VARCHAR(20) NOT NULL,
+    Identificacion VARCHAR(20) NOT NULL,
     Password VARCHAR(255) NOT NULL,
-    Salt VARCHAR(500) NOT NULL,
+    Username VARCHAR (255) NOT NULL,
     INDEX email_idx(Email)
 );
 
@@ -86,3 +86,18 @@ CREATE TABLE AudioBooks_Authors
   	ON DELETE CASCADE
   	ON UPDATE RESTRICT 
 )
+
+CREATE TABLE BookByBook (
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Id_Book INT UNSIGNED NOT NULL,
+    Recommended_Id INT UNSIGNED NOT NULL,
+
+    CONSTRAINT fk_Book
+        FOREIGN KEY (Id_Book) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT,
+
+    CONSTRAINT fk_Recommended
+        FOREIGN KEY (Recommended_Id) REFERENCES Books (Id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
