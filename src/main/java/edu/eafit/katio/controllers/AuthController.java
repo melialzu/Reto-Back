@@ -1,6 +1,7 @@
 package edu.eafit.katio.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,11 +34,16 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Usuarios> register(@RequestBody Usuarios registerUserDto) {
-        Usuarios registeredUser = _authService.signup(registerUserDto);
+    public ResponseEntity<?> register(@RequestBody Usuarios registerUserDto) {
+        try { Usuarios registeredUser = _authService.signup(registerUserDto);
 
         return ResponseEntity.ok(registeredUser);
+    } catch (IllegalArgumentException e) {
+        // Captura la excepción y devuelve un código 400 (Bad Request) con el mensaje de error
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
+
+}
 
     @PostMapping("/signin")
     public ResponseEntity<?> autehnticationUser(@RequestBody LoginUser loginUser){//@RequestBody AuthRequest authRequest){
@@ -48,4 +54,5 @@ public class AuthController {
         loginresponse.setToken(jwtToken);
         return ResponseEntity.ok(loginresponse);
     }
+
 }
