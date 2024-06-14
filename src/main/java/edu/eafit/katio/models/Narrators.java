@@ -1,6 +1,5 @@
 package edu.eafit.katio.models;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,15 +7,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "narrator")
-public class Narrator {
+@Table(name = "narrators")
+public class Narrators {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     private String Name;
-    private String LastName;
+    private String Lastname;
     private String Genre;
 
+
+    // Getters and Setters
     public Integer getId() {
         return Id;
     }
@@ -33,12 +35,12 @@ public class Narrator {
         Name = name;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getLastname() {
+        return Lastname;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setLastname(String lastname) {
+        Lastname = lastname;
     }
 
     public String getGenre() {
@@ -48,4 +50,7 @@ public class Narrator {
     public void setGenre(String genre) {
         Genre = genre;
     }
+
+    // Getters and Setters
+    
 }

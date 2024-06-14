@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import edu.eafit.katio.services.AuthenticationService;
+import edu.eafit.katio.services.JwtService;
 
 import edu.eafit.katio.models.Usuarios;
 import edu.eafit.katio.repositories.UsuarioRepository;
@@ -20,10 +23,18 @@ import edu.eafit.katio.services.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
+    private final JwtService _jwtService;
+    private final AuthenticationService _authService;
+
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    public UsuarioController(JwtService jwtService, AuthenticationService authService){
+        _jwtService = jwtService;
+        _authService = authService;
+    }
 
     @GetMapping("/getall")
     public ResponseEntity<Iterable<Usuarios>> getAllUsuarios() {
@@ -78,11 +89,32 @@ public class UsuarioController {
      */
 
     @PostMapping("/add")
-    public ResponseEntity<Usuarios> addUsurios(@RequestBody Usuarios usuarios) {
+    public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios) {
+    
         var usuarioCreado = new UsuarioService(usuarioRepository).addUsuarios(usuarios);
         return usuarioCreado.getId() == 0 ? new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.BAD_REQUEST)
                 : new ResponseEntity<Usuarios>(usuarioCreado, HttpStatus.OK);
 
     }
+/* 
+    @PutMapping("/update/{username}")
+    public ResponseEntity<Object> updateUsuario(@PathVariable("username") String username, @RequestBody Usuarios updatedUsuario) {
+        var usuarioService = new UsuarioService(usuarioRepository);
+        Usuarios usuarioActualizado = usuarioService.updateUsuarioByUsername(username, updatedUsuario);
+        if (usuarioActualizado != null) {
+            return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+        }
+    }*/
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUsuario(@RequestBody Usuarios usuarios){
+       var updatedUser = new UsuarioService(usuarioRepository).updateUsuarioByUsername(usuarios);  
+       return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+   
+
+   
 
 }
