@@ -14,10 +14,14 @@ import edu.eafit.katio.repositories.AuthorRepository;
 public class AuthorService implements BaseAuthorService {
 
     private AuthorRepository _AuthorRepository;
-    private AudioBooksByAuthorRepository _AudioBooksByAuthorRepository;
+    private AudioBooksByAuthorRepository _audioBooksByAuthorRepository;
 
     public AuthorService(AuthorRepository _AuthorRepository) {
         this._AuthorRepository = _AuthorRepository;
+    }
+
+    public AuthorService(AudioBooksByAuthorRepository audioBooksByAuthorRepository) {
+        _audioBooksByAuthorRepository = audioBooksByAuthorRepository;
     }
 
     // Crear autor
@@ -76,38 +80,38 @@ public class AuthorService implements BaseAuthorService {
     }
 
     // Metodos del dto
-    // Traer libros por Id del autor
+    // Traer Audiolibros por Id del autor
     @Override
     public List<AudioBooksByAuthor> getAllAudioBooksByAuthorId(Integer idAuthor) {
        List<AudioBooksByAuthor> AuthorList = new ArrayList<AudioBooksByAuthor>();
-       AuthorList = _AudioBooksByAuthorRepository .findByAuthorId(idAuthor);
+       AuthorList = _audioBooksByAuthorRepository .findByAuthorId(idAuthor);
        return AuthorList;
     }
 
-    // Traer libros por el nombre del autor
+    // Traer Audiolibros por el nombre del autor
     @Override 
     public List<AudioBooksByAuthor> getAllAudioBooksByAuthorName(String nameAuthor) {
         List<AudioBooksByAuthor> AuthorList = new ArrayList<AudioBooksByAuthor>();
-        AuthorList = _AudioBooksByAuthorRepository.findByAuthorName(nameAuthor);
+        AuthorList = _audioBooksByAuthorRepository.findByAuthorName(nameAuthor);
         return AuthorList;
     }
 
-    // Traer libros por el nombre y/o apellido del autor
+    // Traer Audiolibros por el nombre y/o apellido del autor
     @Override
     public List<AudioBooksByAuthor> getAllAudioBooksByAuthor(String nameAuthor, String lastNameAuthor) {
         List<AudioBooksByAuthor> AuthorList = new ArrayList<AudioBooksByAuthor>();
 
         if (lastNameAuthor.length() > 0 && nameAuthor.length() <= 0) 
         {
-            AuthorList = _AudioBooksByAuthorRepository.findByAuthorLastName(lastNameAuthor);
+            AuthorList = _audioBooksByAuthorRepository.findByAuthorLastName(lastNameAuthor);
         }
         else if (lastNameAuthor.length() <= 0 && nameAuthor.length() > 0) 
         {
-            AuthorList = _AudioBooksByAuthorRepository.findByAuthorName(nameAuthor);
+            AuthorList = _audioBooksByAuthorRepository.findByAuthorName(nameAuthor);
         }
         else 
         {
-            AuthorList = _AudioBooksByAuthorRepository.findByAuthorFullName(lastNameAuthor, nameAuthor);
+            AuthorList = _audioBooksByAuthorRepository.findByAuthorFullName(lastNameAuthor, nameAuthor);
         }
         return AuthorList;
     } 
