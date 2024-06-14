@@ -72,6 +72,13 @@ CREATE TABLE Audiobooks
         ON UPDATE RESTRICT
 );
 
+CREATE TABLE Genre 
+(
+    Id INT NOT NULL PRIMARY KEY,
+    Name NVARCHAR(200) NOT NULL
+);
+
+
 CREATE TABLE AudioBooks_Authors 
 (
   audiobook_id INT UNSIGNED NOT NULL,
