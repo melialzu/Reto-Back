@@ -21,18 +21,18 @@ public interface UsuarioRepository extends CrudRepository<Usuarios, Integer> {
     Usuarios findByEmailAndPasswordList (String Email);
 
     @Query("SELECT u FROM Usuarios u WHERE u.Email= ?1")
-    Optional<Usuarios> findByEmail(String Email);
+    List<Usuarios> findByEmail(String Email);
 
    /*  @Query("SELECT u FROM Usuarios u WHERE u.Username= ?1")
     Optional<Usuarios> findByUsername(String username);*/
-    
+
 
     @Query(nativeQuery = true, value = "SELECT * FROM Usuarios where Email = :username")
     Optional<Usuarios> findByUsername(String username);
 
     Usuarios saveAndFlush(Usuarios usuarios);
 
-    
+
 
 
 

@@ -43,19 +43,19 @@ public class UsuarioService implements BaseUsuarioService {
         return usuarioCreado;
     }
 
-    
+
      private String blake3Formatter(String value) throws NoSuchAlgorithmException
      {
      final MessageDigest md = MessageDigest.getInstance("SHA3-512");
-     
+
      byte[] hash = md.digest(value.getBytes(StandardCharsets.UTF_8));
      String sha3Hex = bytesToHex(hash);
      return sha3Hex;
      }
-    
 
-   
-    
+
+
+
      private String bytesToHex(byte[] hash) {
      BigInteger number = new BigInteger(1, hash);
      StringBuilder hexString = new StringBuilder(number.toString(16));
@@ -64,7 +64,7 @@ public class UsuarioService implements BaseUsuarioService {
      }
      return hexString.toString();
       }
-     
+
 
 
 
@@ -91,13 +91,13 @@ public class UsuarioService implements BaseUsuarioService {
 
         if (usuarioLogin != null) {
 
-         
+
             String validPassword = blake3Formatter(password);
             if (usuarioLogin.getPassword().equals(validPassword)){
-                
+
             };                
             return usuarioLogin;
-         
+
 
         } else {
             return null;
@@ -105,7 +105,7 @@ public class UsuarioService implements BaseUsuarioService {
     }
 
     @Override
-    public Optional<Usuarios> getUsuarioByEmail(String email) {
+    public Iterable<Usuarios> getUsuarioByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
 
@@ -114,7 +114,7 @@ public class UsuarioService implements BaseUsuarioService {
     @Override
     public Usuarios updateUsuarioByUsername (Usuarios usuarios){
         Optional<Usuarios> optionalUsuario = usuarioRepository.findByUsername(usuarios.getUsername());
-     
+
         if(optionalUsuario.isPresent() && !optionalUsuario.get().getEmail().isBlank())
         {
             optionalUsuario.get().setNombre(usuarios.getNombre());
@@ -158,8 +158,7 @@ public class UsuarioService implements BaseUsuarioService {
         }
     }*/
 
-    
 
-    
+
+
   }
-   

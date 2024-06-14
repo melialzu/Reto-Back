@@ -12,7 +12,7 @@ public interface BaseUsuarioService {
     Iterable<Usuarios>getUsuarioByNombre(String nombre);
     Iterable<Usuarios>getUsuarioByIdentificacion(String identificacion);
     Usuarios getUsuarioByEmailAndPassword(String email, String password) throws NoSuchAlgorithmException;
-    Optional<Usuarios>getUsuarioByEmail(String email);
+    Iterable<Usuarios>getUsuarioByEmail(String email);
     Usuarios updateUsuarioByUsername(Usuarios usuarios);
-   
+
 }
