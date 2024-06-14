@@ -20,15 +20,10 @@ public class AudioBooks {
     private String ISBN13;
     private Date Published;
     private String Edition;
-    //private String Genre;
-    private Boolean Abridged; //resumido o no 
+    private Boolean Abridged;
     @Column(name="LengthInSeconds")
-    private Long LengthInSeconds; // duracion en segundos 
-    private String Path; //donde esta ese libro en el disco 
-    //private Long NarratorId; // narrador //Se quita narrador porque se hace un modelo independiente 
-    //@Column(name="author_id")
-    //private Long AuthorId;
-    //private Languajes Languajes; // Enumeracion con el lenguaje del libro //Se quita Languajes porque se hace un cotrolador
+    private Long LengthInSeconds;
+    private String Path;
 
     public AudioBooks() {
     }

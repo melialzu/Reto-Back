@@ -2,6 +2,7 @@ package edu.eafit.katio.services;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -76,15 +77,25 @@ public class AudioBookService implements BaseAudioBookServices{
     //Hacer la validacion para ver si ya existe el audiolibro
     public AudioBooks createAudioBooks(AudioBooksDTO audioBooks) {
 
-        AudioBooks savedAudioBook = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName()).iterator().next();
+        AudioBooks savedAudioBook = null;
 
-        Iterable<Long> ids = _AudioBooks_AuthorsRepository.findByAudioBook(savedAudioBook.getId());
+        Boolean exist = false;
 
-        List<Long> authorsIds = StreamSupport
+        Iterable<AudioBooks> savedAudioBooks = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName());
+
+        long count = StreamSupport.stream(savedAudioBooks.spliterator(), false).count();
+
+        if(count > 0){
+            savedAudioBook = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName()).iterator().next();
+        } 
+
+        if(savedAudioBook != null){
+            List<Long> authorsIds = StreamSupport
             .stream(_AudioBooks_AuthorsRepository.findByAudioBook(savedAudioBook.getId()).spliterator(), false)
             .collect(Collectors.toList());
 
-        Boolean exist = authorsIds.stream().anyMatch(element -> audioBooks.getAuthors().contains(element));
+            exist = authorsIds.stream().anyMatch(element -> audioBooks.getAuthors().contains(element));
+        }
 
         if(exist){
             return null;
@@ -98,6 +109,35 @@ public class AudioBookService implements BaseAudioBookServices{
          
             return audioBook;
 
+        }
+        
+    }
+
+    public AudioBooks updateAudioBooks(AudioBooksDTO audioBooks) {
+
+        AudioBooks savedAudioBook = null;
+
+        Iterable<AudioBooks> savedAudioBooks = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName());
+
+        long count = StreamSupport.stream(savedAudioBooks.spliterator(), false).count();
+
+        if(count > 0){
+            savedAudioBook = _AudioBooksRepository.findAudioBooksByName(audioBooks.getName()).iterator().next();
+        } 
+
+        if(savedAudioBook != null && (savedAudioBook.getId() == audioBooks.getId())){
+            var audioBook = _AudioBooksRepository.save(new AudioBooks(audioBooks.getId(), audioBooks.getName(), audioBooks.getISBN10(), audioBooks.getISBN13(),
+            audioBooks.getPublished(), audioBooks.getEdition(), audioBooks.getAbridged(), audioBooks.getLengthInSeconds(), audioBooks.getPath()));
+
+            _AudioBooks_AuthorsRepository.deleteByAudioBookId(audioBooks.getId());
+            _AudioBooks_GenreRepository.deleteByAudioBookId(audioBooks.getId());
+
+            audioBooks.getAuthors().forEach((authorId) -> _AudioBooks_AuthorsRepository.save(new AudioBooks_Authors(audioBook.getId(), authorId)));
+            audioBooks.getGenres().forEach((genreId) -> _AudioBooks_GenreRepository.save(new AudioBooks_Genre(audioBook.getId(), genreId)));
+         
+            return audioBook;
+        } else{
+            return null;
         }
         
     }
