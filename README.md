@@ -70,7 +70,7 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 - [x] Buscar un autor por fecha de nacimiento.
 - [x] Buscar un autor por país de procedencia.
 - [x] Buscar todos los libros de un autor por relación.
-- [ ] Buscar todos los audiolibros de un autor por relación.
+- [x] Buscar todos los audiolibros de un autor por relación.
 
 ### Narradores
 
