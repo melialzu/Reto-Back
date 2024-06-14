@@ -1,5 +1,7 @@
 package edu.eafit.katio.services;
 
+import java.util.Optional;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,9 +30,14 @@ private final UsuarioRepository usuarioRepository;
     }
 
     public Usuarios signup(Usuarios input) {
-        input.setPassword(passwordEncoder.encode(input.getPassword()));
-        return usuarioRepository.saveAndFlush(input);
-    }
+        // Verifica si el correo ya está registrado
+        Optional<Usuarios> existingUser = usuarioRepository.findByEmail(input.getEmail());
+        if (existingUser.isPresent()) {
+            throw new IllegalArgumentException("El correo ya está registrado.");
+        }
+       input.setPassword(passwordEncoder.encode(input.getPassword()));
+       return usuarioRepository.saveAndFlush(input);
+   }
 
     public Usuarios authenticate(LoginUser input) {
         authenticationManager.authenticate(
