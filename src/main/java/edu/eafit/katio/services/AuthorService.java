@@ -20,8 +20,8 @@ public class AuthorService implements BaseAuthorService {
         this._AuthorRepository = _AuthorRepository;
     }
 
-    public AuthorService(AudioBooksByAuthorRepository audioBooksByAuthorRepository) {
-        _audioBooksByAuthorRepository = audioBooksByAuthorRepository;
+    public AuthorService(AudioBooksByAuthorRepository _audioBooksByAuthorRepository) {
+        this._audioBooksByAuthorRepository = _audioBooksByAuthorRepository;
     }
 
     // Crear autor

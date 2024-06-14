@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.eafit.katio.dtos.AudioBooksByAuthor;
 import edu.eafit.katio.models.Authors;
+import edu.eafit.katio.repositories.AudioBooksByAuthorRepository;
 import edu.eafit.katio.repositories.AuthorRepository;
 import edu.eafit.katio.services.AuthorService;
 
@@ -30,6 +31,9 @@ import edu.eafit.katio.services.AuthorService;
 public class AuthorsController {
     @Autowired
     private AuthorRepository _authorRepository;
+
+    @Autowired
+    private AudioBooksByAuthorRepository _AudioBooksByAuthorRepository;
 
     // Traer todos
     @GetMapping("/getall")
@@ -92,29 +96,28 @@ public class AuthorsController {
         }
     }
 
-    //Todo El dto no funciona
     // Metodos del Dto AudioBooksByAuthor
-    // Traer libros por Id del Autor
+    // Traer AudioLibros por Id del Autor
     @GetMapping("/getByAuthorId/{Id}")
     public ResponseEntity<Iterable<AudioBooksByAuthor>> getAllAudioBooksByAuthorId(@PathVariable("Id") Integer idAuthor)
     {
-        var response = new AuthorService(_authorRepository).getAllAudioBooksByAuthorId(idAuthor);
+        var response = new AuthorService(_AudioBooksByAuthorRepository).getAllAudioBooksByAuthorId(idAuthor);
         return new ResponseEntity<Iterable<AudioBooksByAuthor>>(response, HttpStatus.OK);
     }
 
-    // Traer libros por Nombre del Autor
+    // Traer AudioLibros por Nombre del Autor
     @GetMapping("/getByAuthorName/{Name}")
     public ResponseEntity<Iterable<AudioBooksByAuthor>> getAllAudioBooksByAuthorName(@PathVariable("Name") String nameAuthor) 
     {
-        var response = new AuthorService(_authorRepository).getAllAudioBooksByAuthorName(nameAuthor);
+        var response = new AuthorService(_AudioBooksByAuthorRepository).getAllAudioBooksByAuthorName(nameAuthor);
         return new ResponseEntity<Iterable<AudioBooksByAuthor>>(response, HttpStatus.OK);
     }
 
-    // Traer Libros por Nombre y Apellido del Autor
+    // Traer AudioLibros por Nombre y Apellido del Autor
     @GetMapping("/getByAuthor/{Name}/{LastName}")
     public ResponseEntity<Iterable<AudioBooksByAuthor>> getAllAudioBooksByAuthor(@PathVariable("Name") String nameAuthor, @PathVariable("LastName") String lastNameAuthor)
     {
-        var response = new AuthorService(_authorRepository).getAllAudioBooksByAuthor(nameAuthor, lastNameAuthor);
+        var response = new AuthorService(_AudioBooksByAuthorRepository).getAllAudioBooksByAuthor(nameAuthor, lastNameAuthor);
         return new ResponseEntity<Iterable<AudioBooksByAuthor>>(response, HttpStatus.OK);
     }
 
