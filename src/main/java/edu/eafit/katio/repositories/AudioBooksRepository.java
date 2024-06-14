@@ -17,14 +17,14 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
     )
     Optional<AudioBooks> findAudioBookByISBN10(@Param("ISBN10") String isbn10);
 
-    
     @Query(
         nativeQuery = true,
-        value = "SELECT ab.* FROM audiobooks ab \n" +
-        "INNER JOIN authors a ON ab.Author_Id = a.ID \n" +
-        "WHERE (:author = '' OR (a.Name LIKE CONCAT('%',:author, '%'))) \n"
+        value = "SELECT ab.* FROM audiobooks_authors aba \n" +
+        "INNER JOIN authors a ON a.ID= aba.author_id \n" +
+        "INNER JOIN audiobooks ab ON ab.Id = aba.audiobook_id \n" +
+        "WHERE aba.author_id = :authorId"
     )
-    Iterable<AudioBooks> findAudioBooksByAuthor(@Param("author") String author);
+    Iterable<AudioBooks> findAudioBooksByAuthor(@Param("authorId") String authorId);
     
 
     @Query(
@@ -50,9 +50,12 @@ public interface AudioBooksRepository extends CrudRepository<AudioBooks, Long> {
 
     @Query(
         nativeQuery = true,
-        value = "SELECT * from audiobooks WHERE genre LIKE %:genre% "
+        value = "SELECT ab.* FROM audiobooks_genre abg \n" +
+        "INNER JOIN genre g ON g.Id= abg.genre_id \n" +
+        "INNER JOIN audiobooks ab ON ab.Id = abg.audiobook_id \n" +
+        "WHERE abg.genre_id = :genreId"
     )
-    Iterable<AudioBooks> findAudioBooksByGenre(@Param("genre")String genre);
+    Iterable<AudioBooks> findAudioBooksByGenre(@Param("genreId")String genre);
 
     @Query(
         nativeQuery = true,

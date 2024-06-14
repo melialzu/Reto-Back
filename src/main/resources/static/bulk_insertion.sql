@@ -23,3 +23,56 @@ INSERT INTO Authors (Name, Lastname, Country, Birthdate)
     
    INSERT INTO Books VALUES 
     (0, 'Mexico Gothic', '8420471836', '978-05256620785', '2020-06-30', 'Del Rey', 'Horror Gótico', '800', 4)
+
+
+CREATE TABLE AudioBooks_Authors 
+(
+  Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+  audiobook_id INT UNSIGNED NOT NULL,
+  author_id INT UNSIGNED NOT NULL,
+  CONSTRAINT `fk_audiobooks_id`
+  	FOREIGN KEY (audiobook_id) REFERENCES Audiobooks (Id)
+  	ON DELETE CASCADE 
+  	ON UPDATE RESTRICT,
+  CONSTRAINT `fk_authors_id`
+  	FOREIGN KEY (author_id) REFERENCES Authors (ID)
+  	ON DELETE CASCADE
+  	ON UPDATE RESTRICT 
+)
+
+CREATE TABLE AudioBooks_Genre
+  (
+    Id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+    audiobook_id INT UNSIGNED NOT NULL,
+  	genre_id INT UNSIGNED NOT NULL,
+    CONSTRAINT `fk_audiobook_id`
+  	FOREIGN KEY (audiobook_id) REFERENCES Audiobooks (Id)
+  	ON DELETE CASCADE 
+  	ON UPDATE RESTRICT,
+  CONSTRAINT `fk_genre_id`
+  	FOREIGN KEY (genre_id) REFERENCES Genre (Id)
+  	ON DELETE CASCADE
+  	ON UPDATE RESTRICT
+  )
+
+   INSERT INTO Genre (Id, Name) VALUES
+  (0, 'Fantasia Epica'),
+  (0, 'Horror Gótico'),
+  (0, 'Ciencia Ficción'),
+  (0, 'Realismo Mágico'),
+  (0, 'Crónica'),
+  (0, 'Romancticismo');
+
+   INSERT INTO AudioBooks_Genre (audiobook_id, genre_id) VALUES 
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4)
+
+    INSERT INTO AudioBooks_Authors (audiobook_id, author_id) VALUES 
+	(9, 1),
+    (9, 2),
+    (9, 3),
+    (9, 4),
+    (9, 9),
+    (9, 10)
