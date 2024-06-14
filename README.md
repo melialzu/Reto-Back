@@ -16,8 +16,8 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 ### Usuarios
 
 - [x] Crear un usuario, utilizar el registro.
-- [ ] Login del usuario: debe regresar un token bearer. Al hacer login, debo poder usar el token para cualquier otra acción.
-- [ ] Todas mis acciones deben quedar bajo llave, con la sola excepción de: Login, Signup.
+- [x] Login del usuario: debe regresar un token bearer. Al hacer login, debo poder usar el token para cualquier otra acción.
+- [x] Todas mis acciones deben quedar bajo llave, con la sola excepción de: Login, Signup.
 - [x] Editar un usuario.
 - [ ] Debo poder reiniciar mi clave, solo mi clave. Debo colocar la clave anterior, y dos veces la clave nueva.
 - [x] Listar todos mis usuarios.
@@ -74,10 +74,10 @@ Este project de Spring Boot con JPA y MySQL/MongoDB está diseñado para ser una
 
 ### Narradores
 
-- [ ] Crear un narrador.
-- [ ] Editar un narrador.
-- [ ] Buscar narrador por nombre.
-- [ ] Buscar narrador por perfil de voz.
+- [x] Crear un narrador.
+- [x] Editar un narrador.
+- [x] Buscar narrador por nombre.
+- [x] Buscar narrador por perfil de voz.
 - [ ] Buscar libros narrados por el narrador por relación.
 
 ### Utils
