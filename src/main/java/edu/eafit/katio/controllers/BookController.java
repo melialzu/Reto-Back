@@ -17,9 +17,11 @@ import java.util.Date;
 import java.util.List;
 
 import edu.eafit.katio.dtos.BooksByAuthor;
+import edu.eafit.katio.dtos.GenreInsertdto;
 import edu.eafit.katio.models.Books;
 import edu.eafit.katio.repositories.BookRepository;
 import edu.eafit.katio.repositories.BooksByAuthorRepository;
+import edu.eafit.katio.repositories.GenreByBookRepository;
 import edu.eafit.katio.services.BookService;
 
 
@@ -34,9 +36,10 @@ public class BookController {
     @Autowired
     private BooksByAuthorRepository _BooksByAuthorRepository;
 
+    @Autowired
+    private GenreByBookRepository _GenreByBookRepository;
 
     //Metodos de model Book
-
     // Crear un Libro
     @PostMapping("/add")
     public ResponseEntity<Books> addBooks(@RequestBody Books books) {
@@ -108,7 +111,9 @@ public class BookController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // Metodos del Dto BooksByAuthor
+    //Todo Metodos de Dtos
+
+    // BooksByAuthor
     // Traer libros por Id del Autor
     @GetMapping("/getByAuthorId/{Id}")
     public ResponseEntity<Iterable<BooksByAuthor>> getAllBooksByAuthorId(@PathVariable("Id") Integer idAuthor)
@@ -132,4 +137,16 @@ public class BookController {
         var response = new BookService(_BooksByAuthorRepository).getAllBooksByAuthor(nameAuthor, lastNameAuthor);
         return new ResponseEntity<Iterable<BooksByAuthor>>(response, HttpStatus.OK);
     }
+
+    //GenreByBook
+    // Aniadir un Genero
+    @PostMapping("/addGenres")
+    public ResponseEntity<?> addGenres(@RequestBody GenreInsertdto genre){
+        var response = new BookService(_bookRepository, _GenreByBookRepository).addGenre(genre);
+        if(!response){
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
