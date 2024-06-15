@@ -7,15 +7,19 @@ import java.util.List;
 import java.util.Date;
 
 import edu.eafit.katio.dtos.BooksByAuthor;
+import edu.eafit.katio.dtos.GenreByBook;
+import edu.eafit.katio.dtos.GenreInsertdto;
 import edu.eafit.katio.interfaces.BaseBookService;
 import edu.eafit.katio.models.Books;
 import edu.eafit.katio.repositories.BookRepository;
 import edu.eafit.katio.repositories.BooksByAuthorRepository;
+import edu.eafit.katio.repositories.GenreByBookRepository;
 
 public class BookService implements BaseBookService {
     
     private BookRepository _bookRepository;
     private BooksByAuthorRepository _BooksByAuthorRepository;
+    private GenreByBookRepository _GenreByBookRepository;
 
     public BookService(BookRepository bookRepository){
         _bookRepository = bookRepository;
@@ -23,6 +27,11 @@ public class BookService implements BaseBookService {
 
     public BookService(BooksByAuthorRepository booksByAuthorRepository){
     _BooksByAuthorRepository = booksByAuthorRepository;
+    }
+
+    public BookService(BookRepository bookRepository, GenreByBookRepository genreByBookRepository){
+        _bookRepository = bookRepository;
+        _GenreByBookRepository = genreByBookRepository;
     }
 
     // Traer todos los Libros
@@ -131,5 +140,23 @@ public class BookService implements BaseBookService {
             bookList = _BooksByAuthorRepository.findByAuthorFullName(lastNameAuthor, nameAuthor);
         }
         return bookList;
-    } 
+    }
+    
+    @Override
+    public boolean addGenre(GenreInsertdto genreInsertdto) {
+        var book = _bookRepository.findById(genreInsertdto.getBookId());
+        if(book.isEmpty()){
+            return false;
+        }
+
+        for (var item : genreInsertdto.getGenreList()) {
+            var genre = new GenreByBook();
+            genre.setBookid(book.get().getId());
+            genre.setGenreId(item.getId());
+            _GenreByBookRepository.saveAndFlush(genre);
+        }
+
+        return true;
+    }
+
 }

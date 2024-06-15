@@ -72,10 +72,25 @@ CREATE TABLE Audiobooks
         ON UPDATE RESTRICT
 );
 
-CREATE TABLE Genre 
+CREATE TABLE Genres
 (
     Id INT NOT NULL PRIMARY KEY,
     Name NVARCHAR(200) NOT NULL
+);
+
+
+CREATE TABLE Books_Genres
+(
+  Book_id INT UNSIGNED NOT NULL,
+  Genre_Id INT UNSIGNED NOT NULL,
+  CONSTRAINT `fk_books_genres_id`
+  	FOREIGN KEY (Book_id) REFERENCES Books (Id)
+  	ON DELETE CASCADE
+  	ON UPDATE RESTRICT,
+  CONSTRAINT `fk_genre_books_id`
+  	FOREIGN KEY (Genre_Id) REFERENCES Genres (Id)
+  	ON DELETE CASCADE
+  	ON UPDATE RESTRICT  
 );
 
 
