@@ -73,8 +73,8 @@ public class AudioBooksController {
     @PostMapping ("/update-audiobooks")
     public ResponseEntity<AudioBooks> updateAudioBooks(@RequestBody AudioBooksDTO audioBooks)
     {
-        var response = new AudioBookService(_AudioBooksRepository, _AudioBooks_AuthorsRepository, _AudioBooks_GenreRepository).createAudioBooks(audioBooks);
-        return response.getId() == 0 ? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
+        var response = new AudioBookService(_AudioBooksRepository, _AudioBooks_AuthorsRepository, _AudioBooks_GenreRepository).updateAudioBooks(audioBooks);
+        return response == null || response.getId() == 0? new ResponseEntity<AudioBooks>(response, HttpStatus.BAD_REQUEST)
         : new ResponseEntity<AudioBooks>(response, HttpStatus.OK);
     }
 

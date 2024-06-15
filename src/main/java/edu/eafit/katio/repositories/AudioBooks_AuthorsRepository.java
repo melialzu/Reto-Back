@@ -1,6 +1,8 @@
 package edu.eafit.katio.repositories;
 
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,10 @@ public interface AudioBooks_AuthorsRepository extends CrudRepository<AudioBooks_
         value = "SELECT author_id from audiobooks_authors WHERE audiobook_id =:audiobookId"
     )
     Iterable<Long> findByAudioBook(@Param("audiobookId") Long audiobookId);
+
+    @Query(
+        nativeQuery = true,
+        value = "DELETE FROM audiobooks_authors WHERE audiobook_id =:audiobookId"
+    )
+    Integer deleteByAudioBookId(@Param("audiobookId") Long audiobookId); 
 }

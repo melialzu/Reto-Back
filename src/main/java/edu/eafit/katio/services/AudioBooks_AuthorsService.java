@@ -25,4 +25,8 @@ public class AudioBooks_AuthorsService implements BaseAudioBooks_AuthorsService 
 
         return authorsIds;
     }
+
+    public Integer deleteByAudioBookId(Long audiobookId){
+        return _AudioBooks_AuthorsRepository.deleteByAudioBookId(audiobookId);
+    }
 }
